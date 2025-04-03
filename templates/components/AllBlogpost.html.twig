@@ -1,0 +1,14 @@
+<div{{ attributes }}>
+    <div class="row m-4">
+        {% for blogpost in this.allBlogposts %}
+            <div class="col-4 mt-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="card-title">{{ blogpost.title }}</h3>
+                        <p class="card-text">{{ blogpost.content }}</p>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
