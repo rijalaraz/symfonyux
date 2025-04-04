@@ -40,4 +40,18 @@ class BlogRepository extends ServiceEntityRepository
     //            ->getOneOrNullResult()
     //        ;
     //    }
+
+    public function findByQuery(string $value): array
+    {
+        if(empty($value)) {
+            return [];
+        }
+
+        return $this->createQueryBuilder('b')
+            ->andWhere('LOWER(b.title) LIKE :val')
+            ->setParameter('val', '%'.strtolower($value).'%')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 }

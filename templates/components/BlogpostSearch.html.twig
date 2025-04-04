@@ -1,0 +1,10 @@
+<div {{ attributes }} class="m-4">
+    <input
+        type="search"
+        data-model="query"
+    >
+
+    {% for blogpost in this.blogposts %}
+        <twig:Blogpost id="{{ blogpost.id }}" />
+    {% endfor %}
+</div>
