@@ -20,9 +20,7 @@ final class BlogController extends AbstractController
     #[Route("/blog", "app_blog")]
     public function index(): Response
     {
-        return $this->render('blog/index.html.twig', [
-            'controller_name' => 'BlogController',
-        ]);
+        return $this->render('blog/index.html.twig');
     }
 
     #[Route('/search','app_search')]
@@ -31,11 +29,11 @@ final class BlogController extends AbstractController
         return $this->render('blog/search.html.twig');
     }
 
-    #[Route('blogpost/edit/{id}','app_edit')]
-    public function edit(Blog $blogpost): Response
+    #[Route('blog/edit/{id}','app_edit')]
+    public function edit(Blog $blog): Response
     {
         return $this->render('blog/edit.html.twig', [
-            'blogpost' => $blogpost,
+            'blog' => $blog,
         ]);
     }
 
@@ -48,7 +46,7 @@ final class BlogController extends AbstractController
 
         $blogpost->setTitle($faker->sentence())
             ->setContent($faker->paragraph());
-            
+
         $this->entityManager->persist($blogpost);
         $this->entityManager->flush();
 

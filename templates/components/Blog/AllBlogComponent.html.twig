@@ -1,0 +1,9 @@
+<div{{ attributes }}>
+    <div class="row">
+        {% for blog in this.allBlogs %}
+            <div class="col-4 mt-4">
+                <twig:Blog:BlogComponent id="{{ blog.id }}" />
+            </div>
+        {% endfor %}
+    </div>
+</div>

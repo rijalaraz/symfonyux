@@ -1,0 +1,57 @@
+<div{{ attributes }} class="mx-5">
+    <h1>{{ blog.title }}</h1>
+
+    <hr>
+
+    <div class="mb-3">
+        <label for="blog_title" class="form-label">Title</label>
+        <input
+            type="text"
+            data-model="blog.title"
+            class="form-control"
+            id="blog_title"
+        />
+        {% if this.isValidated and this.getError('blog.title') %}
+            <small class="text-danger">{{ this.getError('blog.title').message }}</small>
+        {% endif %}
+    </div>
+
+    <div class="mb-3">
+        <label for="blog_content" class="form-label">Content</label>
+        <textarea
+            data-model="blog.content"
+            class="form-control"
+            id="blog_content"
+            rows="3"
+        >
+        </textarea>
+        {% if this.isValidated and this.getError('blog.content') %}
+            <small class="text-danger">{{ this.getError('blog.content').message }}</small>
+        {% endif %}
+    </div>
+
+    {% if not this.getError('blog.title') and not this.getError('blog.content') %}
+        <twig:Blog:BlogComponent id="{{ blog.id }}" dataClass="my-4 shadow bg-secondary text-light" />
+    {% endif %}
+
+
+    <div class="d-grid gap-2">
+        <button
+            type="button"
+            data-action="live#action"
+            data-live-action-param="save"
+            class="btn btn-primary"
+        >
+            Enregistrer les modifications
+        </button>
+    </div>
+
+    {% if this.is_edited %}
+        <div
+            class="alert alert-success my-4"
+            role="alert"
+        >
+            <strong>Alert Heading</strong> Enregistré !
+        </div>
+    {% endif %}
+</div>

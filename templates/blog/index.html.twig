@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello BlogController!{% endblock %}
+{% block title %}Symfony UX Components!{% endblock %}
 
 {% block body %}
-    <twig:Blogpost id="1" />
-    <twig:Blogpost id="7" />
+    <twig:Blog:BlogComponent id="1" />
+    <twig:Blog:BlogComponent id="7" />
 
-    <twig:Blog:CountBlogpost />
-    <twig:AllBlogpost />
+    <twig:Blog:CountBlogComponent />
+    <twig:Blog:AllBlogComponent />
 {% endblock %}

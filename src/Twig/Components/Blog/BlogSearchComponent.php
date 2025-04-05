@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Twig\Components;
+namespace App\Twig\Components\Blog;
 
 use App\Repository\BlogRepository;
 use Symfony\UX\LiveComponent\Attribute\AsLiveComponent;
@@ -8,7 +8,7 @@ use Symfony\UX\LiveComponent\Attribute\LiveProp;
 use Symfony\UX\LiveComponent\DefaultActionTrait;
 
 #[AsLiveComponent]
-final class BlogpostSearch
+final class BlogSearchComponent
 {
     use DefaultActionTrait;
 
@@ -20,9 +20,8 @@ final class BlogpostSearch
     ) {
     }
 
-    public function getBlogposts(): array
+    public function getBlogs(): array
     {
         return $this->blogRepository->findByQuery($this->query);
     }
-
 }

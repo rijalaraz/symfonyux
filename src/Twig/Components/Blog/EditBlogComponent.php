@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Twig\Components;
+namespace App\Twig\Components\Blog;
 
 use App\Entity\Blog;
 use Doctrine\ORM\EntityManagerInterface;
@@ -12,7 +12,7 @@ use Symfony\UX\LiveComponent\ValidatableComponentTrait;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[AsLiveComponent]
-final class EditBlogpost
+final class EditBlogComponent
 {
     use DefaultActionTrait;
 
@@ -20,7 +20,7 @@ final class EditBlogpost
 
     #[LiveProp(writable:['title', 'content'])]
     #[Assert\Valid]
-    public Blog $blogpost;
+    public Blog $blog;
 
     public bool $is_edited = false;
 
