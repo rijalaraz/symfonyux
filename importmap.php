@@ -31,4 +31,16 @@ return [
     '@symfony/ux-live-component' => [
         'path' => './vendor/symfony/ux-live-component/assets/dist/live_controller.js',
     ],
+    'chartjs-plugin-zoom' => [
+        'version' => '2.2.0',
+    ],
+    'hammerjs' => [
+        'version' => '2.0.8',
+    ],
+    'chart.js/helpers' => [
+        'version' => '4.4.6',
+    ],
+    '@kurkle/color' => [
+        'version' => '0.3.2',
+    ],
 ];

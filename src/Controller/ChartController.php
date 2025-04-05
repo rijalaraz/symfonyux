@@ -47,6 +47,15 @@ final class ChartController extends AbstractController
                     'max' => 100,
                 ],
             ],
+            'plugins' => [
+                'zoom' => [
+                    'zoom' => [
+                        'wheel' => ['enabled' => true],
+                        'pinch' => ['enabled' => true],
+                        'mode' => 'xy',
+                    ],
+                ],
+            ],
         ]);
 
         return $this->render('chart/index.html.twig', [
