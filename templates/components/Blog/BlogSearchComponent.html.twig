@@ -4,6 +4,8 @@
         data-model="query"
     >
 
+    <span data-loading>Loading...</span>
+
     {% for blog in this.blogs %}
         <twig:Blog:BlogComponent id="{{ blog.id }}" />
     {% endfor %}
