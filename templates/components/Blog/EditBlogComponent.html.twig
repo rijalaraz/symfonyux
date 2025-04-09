@@ -8,7 +8,7 @@
         <input
             type="text"
             data-model="blog.title"
-            class="form-control"
+            class="form-control{{ this.isValidated and this.getError('blog.title') ? ' is-invalid' : '' }}"
             id="blog_title"
         />
         {% if this.isValidated and this.getError('blog.title') %}
@@ -20,7 +20,7 @@
         <label for="blog_content" class="form-label">Content</label>
         <textarea
             data-model="blog.content"
-            class="form-control"
+            class="form-control{{ this.isValidated and this.getError('blog.content') ? ' is-invalid' : '' }}"
             id="blog_content"
             rows="3"
         >
