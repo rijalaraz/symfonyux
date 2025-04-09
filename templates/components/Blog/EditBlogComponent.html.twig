@@ -8,11 +8,11 @@
         <input
             type="text"
             data-model="blog.title"
-            class="form-control{{ this.isValidated and this.getError('blog.title') ? ' is-invalid' : '' }}"
+            class="form-control{{ this.isValidated and _errors.has('blog.title') ? ' is-invalid' : '' }}"
             id="blog_title"
         />
-        {% if this.isValidated and this.getError('blog.title') %}
-            <small class="text-danger">{{ this.getError('blog.title').message }}</small>
+        {% if this.isValidated and _errors.has('blog.title') %}
+            <small class="text-danger">{{ _errors.get('blog.title') }}</small>
         {% endif %}
     </div>
 
