@@ -17,3 +17,6 @@ document.addEventListener('chartjs:init', function (event) {
     const Chart = event.detail.Chart;
     Chart.register(zoomPlugin);
 });
+
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap';
