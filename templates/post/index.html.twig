@@ -39,14 +39,3 @@
 
     <a href="{{ path('app_post_new') }}">Create new</a>
 {% endblock %}
-
-{%- block widget_attributes -%}
-    {% if errors|length > 0 %}
-        {% set _class = 'is-invalid' %}
-        {% if attr.class is defined %}
-           {% set _class = _class ~ ' ' ~ attr.class|trim %}
-        {% endif %}
-        {% set attr = attr|merge({'class': _class}) %}
-    {% endif %}
-    {{- parent() -}}
-{%- endblock widget_attributes -%}

@@ -18,13 +18,13 @@ class PostType extends AbstractType
                 'attr' => [
                     'class' => 'form-control'
                 ],
-                'required' => false
+                'empty_data' => ''
             ])
             ->add('slug', options:[
                 'attr' => [
                     'class' => 'form-control'
                 ],
-                'required' => false
+                'empty_data' => ''
             ])
             ->add('content', TextareaType::class, [
                 // this field is re-rendered as you type
@@ -36,7 +36,7 @@ class PostType extends AbstractType
                 'attr' => [
                     'class' => 'form-control'
                 ],
-                'required' => false
+                'empty_data' => ''
             ])
             // ->add('createdAt', null, [
             //     'widget' => 'single_text'

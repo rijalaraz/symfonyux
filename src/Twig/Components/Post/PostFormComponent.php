@@ -25,6 +25,9 @@ final class PostFormComponent extends AbstractController
     #[LiveProp()]
     public ?Post $initialFormData = null;
 
+    #[LiveProp]
+    public string $buttonLabel = 'Create';
+
     protected function instantiateForm(): FormInterface
     {
         // we can extend AbstractController to get the normal shortcuts
@@ -40,6 +43,8 @@ final class PostFormComponent extends AbstractController
 
         /** @var Post $post */
         $post = $this->getForm()->getData();
+        $timezone = new \DateTimeZone('Indian/Antananarivo');
+        $post->setCreatedAt(new \DateTimeImmutable(timezone: $timezone));
         $entityManager->persist($post);
         $entityManager->flush();
 

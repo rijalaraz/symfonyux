@@ -49,18 +49,18 @@ final class PostController extends AbstractController{
     #[Route('/{id}/edit', name: 'app_post_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Post $post, EntityManagerInterface $entityManager): Response
     {
-        $form = $this->createForm(Post1Type::class, $post);
-        $form->handleRequest($request);
+        // $form = $this->createForm(PostType::class, $post);
+        // $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->flush();
+        // if ($form->isSubmitted() && $form->isValid()) {
+        //     $entityManager->flush();
 
-            return $this->redirectToRoute('app_post_index', [], Response::HTTP_SEE_OTHER);
-        }
+        //     return $this->redirectToRoute('app_post_index', [], Response::HTTP_SEE_OTHER);
+        // }
 
         return $this->render('post/edit.html.twig', [
             'post' => $post,
-            'form' => $form,
+            // 'form' => $form,
         ]);
     }
 

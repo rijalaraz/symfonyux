@@ -5,7 +5,12 @@
 {% block body %}
     <h1>Edit Post</h1>
 
-    {{ include('post/_form.html.twig', {'button_label': 'Update'}) }}
+    <div class="m-5">
+        <twig:Post:PostFormComponent
+            initialFormData="{{ post }}"
+            buttonLabel="Update"
+        />
+    </div>
 
     <a href="{{ path('app_post_index') }}">back to list</a>
 

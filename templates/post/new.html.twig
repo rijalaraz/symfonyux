@@ -5,7 +5,9 @@
 {% block body %}
     <h1>Create new Post</h1>
 
-    {{ include('post/_form.html.twig') }}
+    <div class="m-5">
+        <twig:Post:PostFormComponent />
+    </div>
 
     <a href="{{ path('app_post_index') }}">back to list</a>
 {% endblock %}
