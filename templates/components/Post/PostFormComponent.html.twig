@@ -9,7 +9,10 @@
         </div>
 
         <div class="mb-3">
-            {{ form_row(form.slug) }}
+            {{ form_label(form.slug) }}
+            {% set _class = 'form-control' ~ (not form.slug.vars.valid ? ' is-invalid' : '') %}
+            {{ form_widget(form.slug, { attr: { class: _class  } }) }}
+            <small class="text-danger">{{ form_errors(form.slug) }}</small>
         </div>
 
         <div class="mb-3">
@@ -25,7 +28,6 @@
                 class="btn btn-primary"
                 data-action="live#action:prevent"
                 data-live-action-param="save"
-                data-loading="addAttribute(disabled)"
             >
                 {{ buttonLabel }}
             </button>
