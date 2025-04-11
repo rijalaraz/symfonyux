@@ -20,3 +20,7 @@ document.addEventListener('chartjs:init', function (event) {
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap';
+
+
+import jQuery from "jquery";
+window.$ = window.jQuery = jQuery;
