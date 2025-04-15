@@ -55,5 +55,5 @@ return [
     ],
     'jquery' => [
         'version' => '3.7.1',
-    ],
+    ]
 ];
