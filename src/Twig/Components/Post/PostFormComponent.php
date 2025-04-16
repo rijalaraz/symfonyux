@@ -9,6 +9,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormInterface;
 use Symfony\UX\LiveComponent\Attribute\AsLiveComponent;
 use Symfony\UX\LiveComponent\Attribute\LiveAction;
+use Symfony\UX\LiveComponent\Attribute\LiveArg;
+use Symfony\UX\LiveComponent\Attribute\LiveListener;
 use Symfony\UX\LiveComponent\Attribute\LiveProp;
 use Symfony\UX\LiveComponent\ComponentWithFormTrait;
 use Symfony\UX\LiveComponent\DefaultActionTrait;
@@ -54,4 +56,12 @@ final class PostFormComponent extends AbstractController
             'id' => $post->getId(),
         ]);
     }
+
+    #[LiveListener('titleChanged')]
+    public function createSlug(#[LiveArg()] string $title, #[LiveArg()] string $slug)
+    {
+        $this->formValues['title'] = $title;
+        $this->formValues['slug'] = $slug;
+    }
+
 }

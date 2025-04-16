@@ -6,6 +6,8 @@ use App\Entity\Blog;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\UX\LiveComponent\Attribute\AsLiveComponent;
 use Symfony\UX\LiveComponent\Attribute\LiveAction;
+use Symfony\UX\LiveComponent\Attribute\LiveArg;
+use Symfony\UX\LiveComponent\Attribute\LiveListener;
 use Symfony\UX\LiveComponent\Attribute\LiveProp;
 use Symfony\UX\LiveComponent\DefaultActionTrait;
 use Symfony\UX\LiveComponent\ValidatableComponentTrait;
@@ -35,5 +37,11 @@ final class EditBlogComponent
 
         $this->is_edited = true;
         $this->em->flush();
+    }
+
+    #[LiveListener('titleChanged')]
+    public function createSlug(#[LiveArg] string $slug)
+    {
+        $this->blog->setContent($slug);
     }
 }

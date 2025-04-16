@@ -7,6 +7,7 @@ import { getComponent } from '@symfony/ux-live-component';
 */
 /* stimulusFetch: 'lazy' */
 export default class extends Controller {
+
     async initialize() {
 
         const component = await getComponent(this.element);
@@ -24,12 +25,9 @@ export default class extends Controller {
               .replace(/\-$/g, '');         // Remove trailing -
         }
 
-        $("form").on('input change', '#post_title', function() {
+        $("body").on('input', '#blog_title', function() {
 
-            component.emit('titleChanged', {
-                title: $(this).val(),
-                slug : slugify($(this).val())
-            });
+            component.emit('titleChanged', { slug : slugify($(this).val()) });
 
         });
     }
