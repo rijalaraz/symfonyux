@@ -10,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
+#[Route('/blog')]
 final class BlogController extends AbstractController
 {
     public function __construct(
@@ -17,7 +18,7 @@ final class BlogController extends AbstractController
         private EntityManagerInterface $entityManager,
     ) {}
 
-    #[Route("/blog", "app_blog")]
+    #[Route(name: "app_blog")]
     public function index(): Response
     {
         return $this->render('blog/index.html.twig');
@@ -29,7 +30,7 @@ final class BlogController extends AbstractController
         return $this->render('blog/search.html.twig');
     }
 
-    #[Route('blog/edit/{id}','app_edit')]
+    #[Route('/{id}/edit','app_edit')]
     public function edit(Blog $blog): Response
     {
         return $this->render('blog/edit.html.twig', [
