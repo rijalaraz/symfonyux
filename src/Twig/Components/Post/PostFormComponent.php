@@ -58,10 +58,25 @@ final class PostFormComponent extends AbstractController
     }
 
     #[LiveListener('titleChanged')]
-    public function createSlug(#[LiveArg()] string $title, #[LiveArg()] string $slug)
+    public function createSlug(#[LiveArg()] string $slug)
     {
-        $this->formValues['title'] = $title;
         $this->formValues['slug'] = $slug;
     }
 
+    #[LiveAction]
+    public function addComment()
+    {
+        // "formValues" represents the current data in the form
+        // this modifies the form to add an extra comment
+        // the result: another embedded comment form!
+        // change "comments" to the name of the field that uses CollectionType
+        $this->formValues['comments'][] = [];
+    }
+
+    #[LiveAction]
+    public function removeComment(#[LiveArg] int $index)
+    {
+        unset($this->formValues['comments'][$index]);
+    }
+    
 }

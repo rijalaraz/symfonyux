@@ -14,12 +14,23 @@
                 <td>{{ post.slug }}</td>
             </tr>
             <tr>
-                <th>Content</th>
+                <th class="align-middle">Content</th>
                 <td>{{ post.content }}</td>
             </tr>
             <tr>
                 <th>CreatedAt</th>
                 <td>{{ post.createdAt ? post.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th class="align-middle">Comments</th>
+                <td>
+                    <!-- Some borders are removed -->
+                    <ul class="list-group list-group-flush">
+                        {% for comment in post.comments %}
+                            <li class="list-group-item">{{ comment.description }}</li>
+                        {% endfor %}
+                    </ul>
+                </td>
             </tr>
         </tbody>
     </table>

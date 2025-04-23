@@ -27,7 +27,6 @@ export default class extends Controller {
         $("form").on('input change', '#post_title', function() {
 
             component.emit('titleChanged', {
-                title: $(this).val(),
                 slug : slugify($(this).val())
             });
 

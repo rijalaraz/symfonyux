@@ -7,6 +7,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\UX\LiveComponent\Form\Type\LiveCollectionType;
 
 class PostType extends AbstractType
 {
@@ -37,6 +38,10 @@ class PostType extends AbstractType
                     'class' => 'form-control'
                 ],
                 'empty_data' => ''
+            ])
+            ->add('comments', LiveCollectionType::class, [
+                'entry_type' => CommentType::class,
+                'label' => 'Commentaires',
             ])
             // ->add('createdAt', null, [
             //     'widget' => 'single_text'

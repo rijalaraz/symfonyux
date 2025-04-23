@@ -22,6 +22,37 @@
             <small class="text-danger">{{ form_errors(form.content) }}</small>
         </div>
 
+
+        <div class="mb-3">
+            {{ form_label(form.comments) }}
+            {% for key, commentForm in form.comments %}
+                {# render a delete button for every row #}
+                {{ form_row(commentForm.vars.button_delete, { 
+                    label: 'X', 
+                    attr: { 
+                        'class': 'btn btn-outline-danger',
+                        'data-live-action-param': 'removeComment'
+                    }
+                }  ) }}
+
+                {# render rest of the comment form #}
+                {{ form_row(commentForm, { label: false }) }}
+            {% endfor %}
+
+            {# render the add button #}
+            {{ form_row(form.comments.vars.button_add, { 
+                label: '+ Ajouter', 
+                attr: { 
+                    class: 'btn btn-outline-primary',
+                    'data-live-action-param': 'addComment'
+                } 
+            }) }}
+
+            {# avoid an extra label for this field #}
+            {% do form.comments.setRendered %}
+        </div>
+
+
         <div class="d-grid mt-4">
             <button
                 type="button"
