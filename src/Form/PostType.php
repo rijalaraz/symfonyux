@@ -16,15 +16,9 @@ class PostType extends AbstractType
         $builder
             ->add('title', options:[
                 'label' => 'Titre',
-                'attr' => [
-                    'class' => 'form-control'
-                ],
                 'empty_data' => ''
             ])
             ->add('slug', options:[
-                'attr' => [
-                    'class' => 'form-control'
-                ],
                 'empty_data' => ''
             ])
             ->add('content', TextareaType::class, [
@@ -34,9 +28,6 @@ class PostType extends AbstractType
                 // is no bueno
                 'trim' => false,
                 'label' => 'Contenu',
-                'attr' => [
-                    'class' => 'form-control'
-                ],
                 'empty_data' => ''
             ])
             ->add('comments', LiveCollectionType::class, [

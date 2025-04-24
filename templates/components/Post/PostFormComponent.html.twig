@@ -3,23 +3,32 @@
 
         <div class="mb-3">
             {{ form_label(form.title) }}
-            {% set _class = 'form-control' ~ (not form.title.vars.valid ? ' is-invalid' : '') %}
-            {{ form_widget(form.title, { attr: { class: _class  } }) }}
-            <small class="text-danger">{{ form_errors(form.title) }}</small>
+            {{ form_widget(form.title, {
+                attr: {
+                    class: 'form-control' ~ (not form.title.vars.valid ? ' is-invalid' : '')
+                }
+            }) }}
+            <small class="text-danger"><div class="invalid-feedback d-block">{{ form_errors(form.title) }}</div></small>
         </div>
 
         <div class="mb-3">
             {{ form_label(form.slug) }}
-            {% set _class = 'form-control' ~ (not form.slug.vars.valid ? ' is-invalid' : '') %}
-            {{ form_widget(form.slug, { attr: { class: _class  } }) }}
-            <small class="text-danger">{{ form_errors(form.slug) }}</small>
+            {{ form_widget(form.slug, {
+                attr: {
+                    class: 'form-control' ~ (not form.slug.vars.valid ? ' is-invalid' : '')
+                }
+            }) }}
+            <small class="text-danger"><div class="invalid-feedback d-block">{{ form_errors(form.slug) }}</div></small>
         </div>
 
         <div class="mb-3">
             {{ form_label(form.content) }}
-            {% set _class = 'form-control' ~ (not form.content.vars.valid ? ' is-invalid' : '') %}
-            {{ form_widget(form.content, { attr: { class: _class  } }) }}
-            <small class="text-danger">{{ form_errors(form.content) }}</small>
+            {{ form_widget(form.content, {
+                attr: {
+                    class: 'form-control' ~ (not form.content.vars.valid ? ' is-invalid' : '')
+                }
+            }) }}
+            <small class="text-danger"><div class="invalid-feedback d-block">{{ form_errors(form.content) }}</div></small>
         </div>
 
 
@@ -27,25 +36,25 @@
             {{ form_label(form.comments) }}
             {% for key, commentForm in form.comments %}
                 {# render a delete button for every row #}
-                {{ form_row(commentForm.vars.button_delete, { 
-                    label: 'X', 
-                    attr: { 
-                        'class': 'btn btn-outline-danger',
+                {{ form_row(commentForm.vars.button_delete, {
+                    label: 'X',
+                    attr: {
+                        class: 'btn btn-outline-danger',
                         'data-live-action-param': 'removeComment'
                     }
                 }  ) }}
 
                 {# render rest of the comment form #}
-                {{ form_row(commentForm, { label: false }) }}
+                {{ form_row(commentForm) }}
             {% endfor %}
 
             {# render the add button #}
             {{ form_row(form.comments.vars.button_add, { 
-                label: '+ Ajouter', 
-                attr: { 
+                label: '+ Ajouter',
+                attr: {
                     class: 'btn btn-outline-primary',
                     'data-live-action-param': 'addComment'
-                } 
+                }
             }) }}
 
             {# avoid an extra label for this field #}
