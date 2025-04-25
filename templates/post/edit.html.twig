@@ -9,7 +9,15 @@
         <twig:Post:PostFormComponent
             initialFormData="{{ post }}"
             buttonLabel="Update"
-        />
+            loading="defer"
+        >
+            <twig:block name="loadingContent">
+                <div class="d-flex justify-content-center">
+                    <strong>Loading...</strong>
+                    <div class="spinner-border ml-auto" role="status" aria-hidden="true"></div>
+                </div>
+            </twig:block>
+        </twig:Post:PostFormComponent>
     </div>
 
     <a href="{{ path('app_post_index') }}">back to list</a>
