@@ -5,6 +5,10 @@
 {% block body %}
     <h1>Post</h1>
 
+    <div class="col-8 mx-auto">
+        <twig:AlertComponent />
+    </div>
+
     <div class="m-4">
         <twig:Post:PostShowComponent post="{{ post }}" />
     </div>

@@ -52,6 +52,8 @@ final class PostFormComponent extends AbstractController
 
         $this->addFlash('success', 'Post saved!');
 
+        $this->addFlash('danger', 'Attention erreur!');
+
         return $this->redirectToRoute('app_post_show', [
             'id' => $post->getId(),
         ]);
