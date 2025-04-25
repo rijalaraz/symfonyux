@@ -1,3 +1,5 @@
+{% form_theme form 'components/_form_theme_comment_list.html.twig' %}
+
 <div {{ attributes.defaults(stimulus_controller('mypostform')) }}>
     {{ form_start(form) }}
 
@@ -14,32 +16,7 @@
         </div>
 
         <div class="mb-3">
-            {{ form_label(form.comments) }}
-            {% for key, commentForm in form.comments %}
-                {# render a delete button for every row #}
-                {{ form_row(commentForm.vars.button_delete, {
-                    label: 'X',
-                    attr: {
-                        class: 'btn btn-outline-danger',
-                        'data-live-action-param': 'removeComment'
-                    }
-                }  ) }}
-
-                {# render rest of the comment form #}
-                {{ form_row(commentForm) }}
-            {% endfor %}
-
-            {# render the add button #}
-            {{ form_row(form.comments.vars.button_add, { 
-                label: '+ Ajouter',
-                attr: {
-                    class: 'btn btn-outline-primary',
-                    'data-live-action-param': 'addComment'
-                }
-            }) }}
-
-            {# avoid an extra label for this field #}
-            {% do form.comments.setRendered %}
+           {{ form_row(form.comments) }}
         </div>
 
 
