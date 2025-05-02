@@ -40,9 +40,17 @@ class Post
     #[ORM\OneToMany(targetEntity: Comment::class, mappedBy: 'post', cascade: ['persist'])]
     private Collection $comments;
 
+    /**
+     * @var Collection<int, Food>
+     */
+    #[Assert\Count(min: 1, minMessage: 'We need to eat *something*')]
+    #[ORM\OneToMany(targetEntity: Food::class, mappedBy: 'post', cascade: ['persist'])]
+    private Collection $foods;
+
     public function __construct()
     {
         $this->comments = new ArrayCollection();
+        $this->foods = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -122,6 +130,36 @@ class Post
             // set the owning side to null (unless already changed)
             if ($comment->getPost() === $this) {
                 $comment->setPost(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Food>
+     */
+    public function getFoods(): Collection
+    {
+        return $this->foods;
+    }
+
+    public function addFood(Food $food): static
+    {
+        if (!$this->foods->contains($food)) {
+            $this->foods->add($food);
+            $food->setPost($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFood(Food $food): static
+    {
+        if ($this->foods->removeElement($food)) {
+            // set the owning side to null (unless already changed)
+            if ($food->getPost() === $this) {
+                $food->setPost(null);
             }
         }
 

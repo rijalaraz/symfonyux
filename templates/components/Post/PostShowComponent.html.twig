@@ -22,6 +22,17 @@
                 <td>{{ post.createdAt ? post.createdAt|date('Y-m-d H:i:s') : '' }}</td>
             </tr>
             <tr>
+                <th class="align-middle">Foods</th>
+                <td>
+                    <!-- Some borders are removed -->
+                    <ul class="list-group list-group-flush">
+                        {% for food in post.foods %}
+                            <li class="list-group-item">{{ food.name }}</li>
+                        {% endfor %}
+                    </ul>
+                </td>
+            </tr>
+            <tr>
                 <th class="align-middle">Comments</th>
                 <td>
                     <!-- Some borders are removed -->

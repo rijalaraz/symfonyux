@@ -30,6 +30,13 @@ class PostType extends AbstractType
                 'label' => 'Contenu',
                 'empty_data' => ''
             ])
+            ->add('foods', FoodAutocompleteField::class, [
+                'label' => 'Aliments',
+                'attr' => [
+                    'placeholder' => 'Choisis ce que tu aimerais manger'
+                ],
+                'empty_data' => ''
+            ])
             ->add('comments', LiveCollectionType::class, [
                 'entry_type' => CommentType::class,
                 'label' => 'Commentaires',
