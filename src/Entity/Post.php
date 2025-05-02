@@ -43,8 +43,8 @@ class Post
     /**
      * @var Collection<int, Food>
      */
+    #[ORM\ManyToMany(targetEntity: Food::class, inversedBy: 'posts')]
     #[Assert\Count(min: 1, minMessage: 'We need to eat *something*')]
-    #[ORM\OneToMany(targetEntity: Food::class, mappedBy: 'post')]
     private Collection $foods;
 
     public function __construct()
@@ -148,7 +148,6 @@ class Post
     {
         if (!$this->foods->contains($food)) {
             $this->foods->add($food);
-            $food->setPost($this);
         }
 
         return $this;
@@ -156,12 +155,7 @@ class Post
 
     public function removeFood(Food $food): static
     {
-        if ($this->foods->removeElement($food)) {
-            // set the owning side to null (unless already changed)
-            if ($food->getPost() === $this) {
-                $food->setPost(null);
-            }
-        }
+        $this->foods->removeElement($food);
 
         return $this;
     }

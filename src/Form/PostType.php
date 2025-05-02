@@ -35,7 +35,6 @@ class PostType extends AbstractType
                 'attr' => [
                     'placeholder' => 'Choisis ce que tu aimerais manger'
                 ],
-                'empty_data' => ''
             ])
             ->add('comments', LiveCollectionType::class, [
                 'entry_type' => CommentType::class,
