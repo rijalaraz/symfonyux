@@ -17,6 +17,7 @@ class Food
     private ?string $name = null;
 
     #[ORM\ManyToOne(inversedBy: 'foods')]
+    #[ORM\JoinColumn(onDelete:'SET NULL')]
     private ?Post $post = null;
 
     public function getId(): ?int

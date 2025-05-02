@@ -37,14 +37,14 @@ class Post
     /**
      * @var Collection<int, Comment>
      */
-    #[ORM\OneToMany(targetEntity: Comment::class, mappedBy: 'post', cascade: ['persist'])]
+    #[ORM\OneToMany(targetEntity: Comment::class, mappedBy: 'post', cascade: ['persist', 'remove'])]
     private Collection $comments;
 
     /**
      * @var Collection<int, Food>
      */
     #[Assert\Count(min: 1, minMessage: 'We need to eat *something*')]
-    #[ORM\OneToMany(targetEntity: Food::class, mappedBy: 'post', cascade: ['persist'])]
+    #[ORM\OneToMany(targetEntity: Food::class, mappedBy: 'post')]
     private Collection $foods;
 
     public function __construct()
