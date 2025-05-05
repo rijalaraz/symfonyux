@@ -22,6 +22,10 @@
                 <td>{{ post.createdAt ? post.createdAt|date('Y-m-d H:i:s') : '' }}</td>
             </tr>
             <tr>
+                <th>Situation</th>
+                <td>{{ post.situation.name }}</td>
+            </tr>
+            <tr>
                 <th class="align-middle">Foods</th>
                 <td>
                     <!-- Some borders are removed -->

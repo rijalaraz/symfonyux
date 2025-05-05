@@ -30,6 +30,9 @@ class PostType extends AbstractType
                 'label' => 'Contenu',
                 'empty_data' => ''
             ])
+            ->add('situation', SituationAutocompleteField::class, [
+                'label' => 'Situation',
+            ])
             ->add('foods', FoodAutocompleteField::class, [
                 'label' => 'Aliments',
                 'attr' => [

@@ -47,6 +47,10 @@ class Post
     #[Assert\Count(min: 1, minMessage: 'We need to eat *something*')]
     private Collection $foods;
 
+    #[ORM\ManyToOne(inversedBy: 'posts')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Situation $situation = null;
+
     public function __construct()
     {
         $this->comments = new ArrayCollection();
@@ -156,6 +160,18 @@ class Post
     public function removeFood(Food $food): static
     {
         $this->foods->removeElement($food);
+
+        return $this;
+    }
+
+    public function getSituation(): ?Situation
+    {
+        return $this->situation;
+    }
+
+    public function setSituation(?Situation $situation): static
+    {
+        $this->situation = $situation;
 
         return $this;
     }
