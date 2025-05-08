@@ -21,18 +21,6 @@ export default class extends Controller {
         // The chart is not yet created
         // You can access the config that will be passed to "new Chart()"
         console.log(event.detail.config);
-
-        this.datasetsDatas = event.detail.config.data.datasets.map(dataset => dataset.data);
-
-        // For instance you can format Y axis
-        // To avoid overriding existing config, you should distinguish 3 cases:
-        // # 3. Existing Y axis config => update it
-        event.detail.config.options.scales.y.ticks = {
-            callback: function (value, index, values) {
-                return value + ' votes';
-            },
-        };
-
     }
 
     _onConnect(event) {

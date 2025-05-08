@@ -23,11 +23,10 @@
         }
     </style>
 
-    <div style="min-height: 300px; margin-bottom: 50px;">
-        {{ render_chart(chart, { 'data-controller' : 'chart' }) }}
-    </div>
-
     <div class="container">
+        <div class="row" style="min-height: 400px; margin-bottom: 30px;">
+            {{ render_chart(chart, { 'data-controller' : 'chart' }) }}
+        </div>
         <div class="row">
             <div
                 class="col-4"
@@ -45,8 +44,6 @@
             >
                 <div class="val" id="final">{{ echelle }}</div>
             </div>
-            
         </div>
     </div>
-        
 </div>
