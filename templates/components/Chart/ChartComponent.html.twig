@@ -1,0 +1,52 @@
+<div{{ attributes }}>
+    <style>
+        .val {
+            width: 50px;
+            background-color: #ACB6E5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: consolas;
+            font-weight: 700;
+            font-size: 15px;
+            letter-spacing: 1.3px;
+            border-radius: 3px;
+        }
+
+        input[type="range"] {
+            writing-mode: horizontal-tb;
+            direction: ltr;
+            border-radius: 5px;
+            outline: none;
+            margin: 0 20px;
+            cursor: pointer;
+        }
+    </style>
+
+    <div style="min-height: 300px; margin-bottom: 50px;">
+        {{ render_chart(chart, { 'data-controller' : 'chart' }) }}
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div
+                class="col-4"
+            >
+                <input
+                    type="range"
+                    min="0"
+                    max="100"
+                    step="5"
+                    data-model="echelle"
+                >
+            </div>
+            <div
+                class="col-4"
+            >
+                <div class="val" id="final">{{ echelle }}</div>
+            </div>
+            
+        </div>
+    </div>
+        
+</div>
