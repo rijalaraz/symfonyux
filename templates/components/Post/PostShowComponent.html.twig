@@ -37,6 +37,21 @@
                 </td>
             </tr>
             <tr>
+                <th class="align-middle">Photos</th>
+                <td>
+                    <table class="table table-light form-no-mb">
+                        <tbody>
+                            {% for photo in post.photos %}
+                            <tr>
+                                <td>{{ photo.title }}</td>
+                                <td>{{ photo.url }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+            <tr>
                 <th class="align-middle">Comments</th>
                 <td>
                     <!-- Some borders are removed -->

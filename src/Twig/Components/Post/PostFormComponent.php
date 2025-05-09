@@ -35,21 +35,10 @@ final class PostFormComponent extends AbstractController
     #[LiveProp]
     public string $buttonLabel = 'Create';
 
-    #[LiveProp]
-    public array $multipleUploadFilenames = [];
-
     protected function instantiateForm(): FormInterface
     {
         // we can extend AbstractController to get the normal shortcuts
         return $this->createForm(PostType::class, $this->initialFormData);
-    }
-
-    private function processFileUpload(UploadedFile $file): array
-    {
-        // in a real app, move this file somewhere
-        // $file->move(...);
-
-        return [$file->getClientOriginalName(), $file->getSize()];
     }
 
     #[LiveAction]
@@ -60,34 +49,45 @@ final class PostFormComponent extends AbstractController
         $this->submitForm();
 
 
+        /** @var Post $post */
+        $post = $this->getForm()->getData();
+
         $directory = $this->getParameter('upload_directory');
 
-        $sluggedFilename = [];
+        if (!is_dir($directory)) {
+            mkdir($directory, 0755);
+        }
+
+        $postData = $request->request->all();
+
+        $objData = json_decode($postData['data']);
+
+        $aPhotos = $objData->props->post->photos;
 
         $files = $request->files->all('post');
 
-        foreach ($files['photos'] as $sary) {
+        foreach ($files['photos'] as $key => $sary) {
 
             /** @var UploadedFile $uploadedFile */
             $uploadedFile = $sary['url'];
 
-            [$filename, $size] = $this->processFileUpload($uploadedFile);
-            $this->multipleUploadFilenames[] = ['filename' => $filename, 'size' => $size];
-
             $originalFilename = pathinfo($uploadedFile->getClientOriginalName(), PATHINFO_FILENAME);
 
-            $name = $slugger->slug($originalFilename)->toString().'.'.$uploadedFile->guessExtension();
+            $sluggedFilename = $post->getSlug().'_'.uniqid().'_'.strtolower($slugger->slug($originalFilename)->toString()).'.'.$uploadedFile->guessExtension();
 
-            $sluggedFilename[] = $name;
+            $file = $uploadedFile->move($directory, $sluggedFilename);
 
-            $file = $uploadedFile->move($directory, $name);
-        }
+            $photo = new Photo();
+            if (empty($aPhotos[$key]->title)) {
+                $photo->setTitle($originalFilename);
+            } else {
+                $photo->setTitle($aPhotos[$key]->title);
+            }
+            $photo->setUrl($sluggedFilename);
 
-        /** @var Post $post */
-        $post = $this->getForm()->getData();
+            $entityManager->persist($photo);
 
-        foreach ($post->getPhotos() as $key => $photo) {
-            $photo->setUrl($sluggedFilename[$key]);
+            $post->addPhoto($photo);
         }
 
         $timezone = new \DateTimeZone('Indian/Antananarivo');
@@ -95,13 +95,13 @@ final class PostFormComponent extends AbstractController
         $entityManager->persist($post);
         $entityManager->flush();
 
-        // $this->addFlash('success', 'Post saved!');
+        $this->addFlash('success', 'Post saved!');
 
-        // $this->addFlash('danger', 'Attention erreur!');
+        $this->addFlash('danger', 'Attention erreur!');
 
-        // return $this->redirectToRoute('app_post_show', [
-        //     'id' => $post->getId(),
-        // ]);
+        return $this->redirectToRoute('app_post_show', [
+            'id' => $post->getId(),
+        ]);
     }
 
     #[LiveListener('titleChanged')]

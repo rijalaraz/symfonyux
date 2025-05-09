@@ -25,7 +25,6 @@ class PhotoType extends AbstractType
             ])
             ->add('url', FileType::class, [
                 'label' => 'Photo',
-                'data_class' => null,
             ])
         ;
     }

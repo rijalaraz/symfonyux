@@ -44,6 +44,7 @@ class PostType extends AbstractType
             ->add('photos', LiveCollectionType::class, [
                 'entry_type' => PhotoType::class,
                 'label' => 'Photos',
+                'mapped' => false,
             ])
             ->add('comments', LiveCollectionType::class, [
                 'entry_type' => CommentType::class,

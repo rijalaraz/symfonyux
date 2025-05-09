@@ -21,8 +21,32 @@
             {{ form_row(form.foods) }}
         </div>
 
+        {% set postHasPhotos = initialFormData is not null and initialFormData.photos|length > 0 %}
+        {% if postHasPhotos %}
+        <div class="row">
+            {{ form_label(form.photos) }}
+            <div class="col-sm-10">
+                <table class="table table-light form-no-mb">
+                    <tbody>
+                        {% for photo in initialFormData.photos %}
+                        <tr>
+                            <td>{{ photo.title }}</td>
+                            <td>{{ photo.url }}</td>
+                            <td><button class="btn btn-outline-danger">X</button></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        {% endif %}
+
         <div class="mb-3">
-            {{ form_row(form.photos) }}
+            {% if postHasPhotos %}
+                {{ form_row(form.photos, { label: false }) }}
+            {% else %}
+                {{ form_row(form.photos) }}
+            {% endif %}
         </div>
 
         <div class="mb-3">
