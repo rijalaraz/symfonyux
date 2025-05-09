@@ -51,10 +51,17 @@ class Post
     #[ORM\JoinColumn(nullable: false)]
     private ?Situation $situation = null;
 
+    /**
+     * @var Collection<int, Photo>
+     */
+    #[ORM\OneToMany(targetEntity: Photo::class, mappedBy: 'post', orphanRemoval: true, cascade: ['persist'])]
+    private Collection $photos;
+
     public function __construct()
     {
         $this->comments = new ArrayCollection();
         $this->foods = new ArrayCollection();
+        $this->photos = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -172,6 +179,36 @@ class Post
     public function setSituation(?Situation $situation): static
     {
         $this->situation = $situation;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Photo>
+     */
+    public function getPhotos(): Collection
+    {
+        return $this->photos;
+    }
+
+    public function addPhoto(Photo $photo): static
+    {
+        if (!$this->photos->contains($photo)) {
+            $this->photos->add($photo);
+            $photo->setPost($this);
+        }
+
+        return $this;
+    }
+
+    public function removePhoto(Photo $photo): static
+    {
+        if ($this->photos->removeElement($photo)) {
+            // set the owning side to null (unless already changed)
+            if ($photo->getPost() === $this) {
+                $photo->setPost(null);
+            }
+        }
 
         return $this;
     }

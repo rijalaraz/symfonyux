@@ -5,7 +5,7 @@
         </tbody>
     </table>
     {%- if skip_add_button|default(false) is same as(false) and button_add is defined and not button_add.rendered -%}
-        {{ form_widget(button_add, { label: '+ Ajouter', attr: { class: 'btn btn-outline-primary', 'data-live-action-param': 'addComment' } }) }}
+        {{ form_widget(button_add, { label: '+ Ajouter', attr: { class: 'btn btn-outline-primary' } }) }}
     {%- endif -%}
 {%- endblock -%}
 
@@ -15,7 +15,7 @@
             <td>{{- form_row(child) -}}</td>
         {% endfor %}
         <td>
-            {{- form_row(button_delete, { label: 'X', attr: { class: 'btn btn-outline-danger', 'data-live-action-param': 'removeComment' } }) -}}
+            {{- form_row(button_delete, { label: 'X', attr: { class: 'btn btn-outline-danger' } }) -}}
         </td>
     </tr>
 {%- endblock -%}
