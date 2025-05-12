@@ -51,39 +51,17 @@ final class PostFormComponent extends AbstractController
         /** @var Post $post */
         $post = $this->getForm()->getData();
 
-        $directory = $this->getParameter('upload_directory');
-
-        if (!is_dir($directory)) {
-            mkdir($directory, 0755);
-        }
-
-        $postData = $request->request->all();
-
-        $objData = json_decode($postData['data']);
-
-        $aPhotos = $objData->props->post->photos;
-
         $files = $request->files->all('post');
 
         if (!empty($files)) {
-            foreach ($files['photos'] as $key => $sary) {
+            foreach ($files['photos'] as $sary) {
 
                 /** @var UploadedFile $uploadedFile */
-                $uploadedFile = $sary['url'];
-
-                $originalFilename = pathinfo($uploadedFile->getClientOriginalName(), PATHINFO_FILENAME);
-
-                $sluggedFilename = $post->getSlug().'_'.uniqid().'_'.strtolower($slugger->slug($originalFilename)->toString()).'.'.$uploadedFile->guessExtension();
-
-                $file = $uploadedFile->move($directory, $sluggedFilename);
+                $uploadedFile = $sary['imageFile']['file'];
 
                 $photo = new Photo();
-                if (empty($aPhotos[$key]->title)) {
-                    $photo->setTitle($originalFilename);
-                } else {
-                    $photo->setTitle($aPhotos[$key]->title);
-                }
-                $photo->setUrl($sluggedFilename);
+
+                $photo->setImageFile($uploadedFile);
 
                 $entityManager->persist($photo);
 
