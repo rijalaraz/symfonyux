@@ -5,7 +5,6 @@ namespace App\Twig\Components\Post;
 use App\Entity\Photo;
 use App\Entity\Post;
 use App\Form\PostType;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormInterface;
@@ -66,28 +65,30 @@ final class PostFormComponent extends AbstractController
 
         $files = $request->files->all('post');
 
-        foreach ($files['photos'] as $key => $sary) {
+        if (!empty($files)) {
+            foreach ($files['photos'] as $key => $sary) {
 
-            /** @var UploadedFile $uploadedFile */
-            $uploadedFile = $sary['url'];
+                /** @var UploadedFile $uploadedFile */
+                $uploadedFile = $sary['url'];
 
-            $originalFilename = pathinfo($uploadedFile->getClientOriginalName(), PATHINFO_FILENAME);
+                $originalFilename = pathinfo($uploadedFile->getClientOriginalName(), PATHINFO_FILENAME);
 
-            $sluggedFilename = $post->getSlug().'_'.uniqid().'_'.strtolower($slugger->slug($originalFilename)->toString()).'.'.$uploadedFile->guessExtension();
+                $sluggedFilename = $post->getSlug().'_'.uniqid().'_'.strtolower($slugger->slug($originalFilename)->toString()).'.'.$uploadedFile->guessExtension();
 
-            $file = $uploadedFile->move($directory, $sluggedFilename);
+                $file = $uploadedFile->move($directory, $sluggedFilename);
 
-            $photo = new Photo();
-            if (empty($aPhotos[$key]->title)) {
-                $photo->setTitle($originalFilename);
-            } else {
-                $photo->setTitle($aPhotos[$key]->title);
+                $photo = new Photo();
+                if (empty($aPhotos[$key]->title)) {
+                    $photo->setTitle($originalFilename);
+                } else {
+                    $photo->setTitle($aPhotos[$key]->title);
+                }
+                $photo->setUrl($sluggedFilename);
+
+                $entityManager->persist($photo);
+
+                $post->addPhoto($photo);
             }
-            $photo->setUrl($sluggedFilename);
-
-            $entityManager->persist($photo);
-
-            $post->addPhoto($photo);
         }
 
         $timezone = new \DateTimeZone('Indian/Antananarivo');
