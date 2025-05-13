@@ -63,8 +63,6 @@ final class PostFormComponent extends AbstractController
 
                 $photo->setImageFile($uploadedFile);
 
-                $entityManager->persist($photo);
-
                 $post->addPhoto($photo);
             }
         }
