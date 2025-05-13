@@ -34,7 +34,7 @@
                             <td><a href="#" data-bs-toggle="modal" data-bs-target="#nx27gy9bqi_{{ photo.id }}">{{ photo.url }}</a></td>
                             <td><button class="btn btn-outline-danger">X</button></td>
                             <td>
-                                <twig:ModalComponent id="nx27gy9bqi_{{ photo.id }}" photo="{{ photo }}" />
+                                <twig:ModalPhotoComponent id="nx27gy9bqi_{{ photo.id }}" photo="{{ photo }}" />
                             </td>
                         </tr>
                         {% endfor %}
