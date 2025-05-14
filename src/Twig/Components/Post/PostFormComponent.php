@@ -5,6 +5,7 @@ namespace App\Twig\Components\Post;
 use App\Entity\Photo;
 use App\Entity\Post;
 use App\Form\PostType;
+use App\Repository\PhotoRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormInterface;
@@ -34,6 +35,11 @@ final class PostFormComponent extends AbstractController
     #[LiveProp]
     public string $buttonLabel = 'Create';
 
+    public function __construct(
+       private EntityManagerInterface $entityManager,
+       private PhotoRepository $photoRepository,
+    ) {}
+
     protected function instantiateForm(): FormInterface
     {
         // we can extend AbstractController to get the normal shortcuts
@@ -41,7 +47,7 @@ final class PostFormComponent extends AbstractController
     }
 
     #[LiveAction]
-    public function save(EntityManagerInterface $entityManager, Request $request, SluggerInterface $slugger)
+    public function save(Request $request)
     {
         // Submit the form! If validation fails, an exception is thrown
         // and the component is automatically re-rendered with the errors
@@ -69,12 +75,10 @@ final class PostFormComponent extends AbstractController
 
         $timezone = new \DateTimeZone('Indian/Antananarivo');
         $post->setCreatedAt(new \DateTimeImmutable(timezone: $timezone));
-        $entityManager->persist($post);
-        $entityManager->flush();
+        $this->entityManager->persist($post);
+        $this->entityManager->flush();
 
         $this->addFlash('success', 'Post saved!');
-
-        $this->addFlash('danger', 'Attention erreur!');
 
         return $this->redirectToRoute('app_post_show', [
             'id' => $post->getId(),
@@ -119,4 +123,11 @@ final class PostFormComponent extends AbstractController
         }
     }
 
+    #[LiveAction]
+    public function deletePhoto(#[LiveArg()] $id)
+    {
+        $photo = $this->photoRepository->find($id);
+        $this->entityManager->remove($photo);
+        $this->entityManager->flush();
+    }
 }
