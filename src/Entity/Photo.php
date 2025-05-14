@@ -17,7 +17,7 @@ class Photo
     private ?int $id = null;
 
     // NOTE: This is not a mapped field of entity metadata, just a simple property.
-    #[Vich\UploadableField(mapping: 'photos', fileNameProperty: 'url', originalName: 'title')]
+    #[Vich\UploadableField(mapping: 'photos_mapping', fileNameProperty: 'url', originalName: 'title')]
     private ?File $imageFile = null;
 
     #[ORM\Column(length: 255, nullable: true)]
