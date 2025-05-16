@@ -24,6 +24,9 @@ class Food
     #[ORM\ManyToMany(targetEntity: Post::class, mappedBy: 'foods')]
     private Collection $posts;
 
+    #[ORM\ManyToOne(inversedBy: 'foods')]
+    private ?Meal $meal = null;
+
     public function __construct()
     {
         $this->posts = new ArrayCollection();
@@ -69,6 +72,18 @@ class Food
         if ($this->posts->removeElement($post)) {
             $post->removeFood($this);
         }
+
+        return $this;
+    }
+
+    public function getMeal(): ?Meal
+    {
+        return $this->meal;
+    }
+
+    public function setMeal(?Meal $meal): static
+    {
+        $this->meal = $meal;
 
         return $this;
     }
