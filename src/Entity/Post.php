@@ -58,6 +58,9 @@ class Post
     #[ORM\OneToMany(targetEntity: Photo::class, mappedBy: 'post', orphanRemoval: true, cascade: ['persist'])]
     private Collection $photos;
 
+    #[ORM\ManyToOne(inversedBy: 'posts')]
+    private ?Meal $meal = null;
+
     public function __construct()
     {
         $this->comments = new ArrayCollection();
@@ -210,6 +213,18 @@ class Post
                 $photo->setPost(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getMeal(): ?Meal
+    {
+        return $this->meal;
+    }
+
+    public function setMeal(?Meal $meal): static
+    {
+        $this->meal = $meal;
 
         return $this;
     }

@@ -2,17 +2,26 @@
 
 namespace App\Form;
 
+use App\Entity\Food;
+use App\Entity\Meal;
 use App\Entity\Post;
+use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\QueryBuilder;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\UX\LiveComponent\Form\Type\LiveCollectionType;
+use Symfonycasts\DynamicForms\DependentField;
+use Symfonycasts\DynamicForms\DynamicFormBuilder;
 
 class PostType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        $builder = new DynamicFormBuilder($builder);
+
         $builder
             ->add('title', options:[
                 'label' => 'Titre',
@@ -33,13 +42,42 @@ class PostType extends AbstractType
             ->add('situation', SituationAutocompleteField::class, [
                 'label' => 'Situation',
             ])
-            ->add('foods', FoodAutocompleteField::class, [
-                'label' => 'Aliments',
-                'attr' => [
-                    'placeholder' => 'Choisis ce que tu aimerais manger'
-                ],
+        ;
+
+        // $dynamicBuilder = new DynamicFormBuilder($builder);
+    
+        $builder
+            ->add('meal', EntityType::class, [
+                'class' => Meal::class,
+                'choice_label' => fn (Meal $meal): string => $meal->getReadable(),
+                'placeholder' => 'Which meal is it?',
+                'autocomplete' => true,
             ])
-            ->add('photos', LiveCollectionType::class, [
+            ->addDependent('foods', ['meal'], function (DependentField $field, ?Meal $meal) {
+                $field->add(FoodAutocompleteField::class, [
+                    'label' => 'Aliments',
+                    'placeholder' => null === $meal ? 'Select a meal first' : \sprintf('What\'s for %s?', $meal->getReadable()),
+
+                    'filter_query' => function(QueryBuilder $qb, string $query, EntityRepository $repository) use($meal) {
+                                  
+                        if (null !== $meal) {
+                            dd($meal);
+                        }
+
+                        $qb = $repository->createQueryBuilder('o');
+                       
+
+                        $qb->andWhere($qb->expr()->eq('o.meal_id', $meal->getId()))
+                        ;
+                    },
+                    
+                    // 'choices' => $meal?->getFoods(),
+                    // 'disabled' => null === $meal,
+                ]);
+            })
+        ;
+ 
+        $builder->add('photos', LiveCollectionType::class, [
                 'entry_type' => PhotoType::class,
                 'label' => 'Photos',
                 'mapped' => false,
