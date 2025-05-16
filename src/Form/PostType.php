@@ -20,6 +20,12 @@ class PostType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        /**
+         * Install DynamicFormBuilder:.
+         *
+         *    composer require symfonycasts/dynamic-forms
+         */
+
         $builder = new DynamicFormBuilder($builder);
 
         $builder
@@ -53,26 +59,16 @@ class PostType extends AbstractType
                 'placeholder' => 'Which meal is it?',
                 'autocomplete' => true,
             ])
-            ->addDependent('foods', ['meal'], function (DependentField $field, ?Meal $meal) {
-                $field->add(FoodAutocompleteField::class, [
-                    'label' => 'Aliments',
+            ->addDependent('foods', 'meal', function (DependentField $field, ?Meal $meal) {
+                 $field->add(EntityType::class, [
+                    'class' => Food::class,
                     'placeholder' => null === $meal ? 'Select a meal first' : \sprintf('What\'s for %s?', $meal->getReadable()),
-
-                    'filter_query' => function(QueryBuilder $qb, string $query, EntityRepository $repository) use($meal) {
-                                  
-                        if (null !== $meal) {
-                            dd($meal);
-                        }
-
-                        $qb = $repository->createQueryBuilder('o');
-                       
-
-                        $qb->andWhere($qb->expr()->eq('o.meal_id', $meal->getId()))
-                        ;
-                    },
-                    
-                    // 'choices' => $meal?->getFoods(),
-                    // 'disabled' => null === $meal,
+                    'choices' => $meal?->getFoods(),
+                    'choice_label' => 'name',
+                    'disabled' => null === $meal,
+                    'autocomplete' => true,
+                    'multiple' => true,
+                    'mapped' => false,
                 ]);
             })
         ;
