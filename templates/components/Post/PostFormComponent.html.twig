@@ -1,6 +1,10 @@
 <div
-    {{ attributes.defaults(stimulus_controller('postform')) }}
-    data-postform-breakfast-value="abc"
+    {{ attributes.defaults(stimulus_controller('postform', {
+        breakfast: 'milk',
+        controllerClasses: {
+            loading: 'spinner'
+        }
+    })) }}
     data-postform-andrahoy-class="andrahoy"
 >
 

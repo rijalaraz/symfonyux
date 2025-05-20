@@ -41,25 +41,28 @@ class PostType extends AbstractType
             ])
         ;
 
-        $builder->add('meal', EntityType::class, [
-            'class' => Meal::class,
-            'choice_label' => fn (Meal $meal): string => $meal->getReadable(),
-            'placeholder' => 'Which meal is it?',
-            'autocomplete' => true,
-        ])
-        // see: https://github.com/SymfonyCasts/dynamic-forms
-        ->addDependent('foods', 'meal', function (DependentField $field, ?Meal $meal) {
-            $field->add(FoodAutocompleteField::class,  [
-                'label' => 'Aliments',
-                'placeholder' => null === $meal ? 'Select a meal first' : \sprintf('What\'s for %s?', $meal->getReadable()),
-                'extra_options' => [
-                    'included_meals' => $meal ? [$meal->getId()] : [],
-                ],
-                'disabled' => null === $meal,
-            ]);
-        });
+        $builder
+            ->add('meal', EntityType::class, [
+                'class' => Meal::class,
+                'choice_label' => fn (Meal $meal): string => $meal->getReadable(),
+                'placeholder' => 'Which meal is it?',
+                'autocomplete' => true,
+            ])
+            // see: https://github.com/SymfonyCasts/dynamic-forms
+            ->addDependent('foods', 'meal', function (DependentField $field, ?Meal $meal) {
+                $field->add(FoodAutocompleteField::class,  [
+                    'label' => 'Aliments',
+                    'placeholder' => null === $meal ? 'Select a meal first' : \sprintf('What\'s for %s?', $meal->getReadable()),
+                    'extra_options' => [
+                        'included_meals' => $meal ? [$meal->getId()] : [],
+                    ],
+                    // 'disabled' => null === $meal,
+                ]);
+            })
+        ;
  
-        $builder->add('photos', LiveCollectionType::class, [
+        $builder
+            ->add('photos', LiveCollectionType::class, [
                 'entry_type' => PhotoType::class,
                 'label' => 'Photos',
                 'mapped' => false,

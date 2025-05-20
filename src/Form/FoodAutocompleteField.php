@@ -23,7 +23,7 @@ class FoodAutocompleteField extends AbstractType
 
             // choose which fields to use in the search
             // if not passed, *all* fields are used
-            // 'searchable_fields' => ['name'],
+            'searchable_fields' => ['name'],
 
             // 'security' => 'ROLE_SOMETHING',
 
