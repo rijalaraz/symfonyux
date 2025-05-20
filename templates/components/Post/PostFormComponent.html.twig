@@ -1,8 +1,17 @@
-<div {{ attributes.defaults(stimulus_controller('mypostform')) }}>
+<div
+    {{ attributes.defaults(stimulus_controller('postform')) }}
+    data-postform-breakfast-value="abc"
+    data-postform-andrahoy-class="andrahoy"
+>
+
     {{ form_start(form) }}
 
         <div class="mb-3">
-            {{ form_row(form.title) }}
+            {{ form_row(form.title, {
+                attr: {
+                    'data-postform-target': 'titre'
+                }
+            }) }}
         </div>
 
         <div class="mb-3">
@@ -18,7 +27,11 @@
         </div>
 
         <div class="mb-3">
-            {{ form_row(form.meal) }}
+            {{ form_row(form.meal, {
+                attr: {
+                    'data-postform-target': 'sakafo'
+                }
+            }) }}
         </div>
 
         <div class="mb-3">

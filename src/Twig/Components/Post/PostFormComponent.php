@@ -19,6 +19,7 @@ use Symfony\UX\LiveComponent\Attribute\LiveProp;
 use Symfony\UX\LiveComponent\ComponentWithFormTrait;
 use Symfony\UX\LiveComponent\DefaultActionTrait;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\UX\LiveComponent\ValidatableComponentTrait;
 
 #[AsLiveComponent]
 final class PostFormComponent extends AbstractController
@@ -85,7 +86,7 @@ final class PostFormComponent extends AbstractController
         ]);
     }
 
-    #[LiveListener('titleChanged')]
+    #[LiveListener('title:changed')]
     public function createSlug(#[LiveArg()] string $slug)
     {
         $this->formValues['slug'] = $slug;
@@ -129,5 +130,11 @@ final class PostFormComponent extends AbstractController
         $photo = $this->photoRepository->find($id);
         $this->entityManager->remove($photo);
         $this->entityManager->flush();
+    }
+
+    #[LiveListener('meal:changed')]
+    public function cleanFoods(#[LiveArg()] string $meal)
+    {
+        $this->formValues['foods'] = [];
     }
 }
