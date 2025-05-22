@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8ebc6e40a8bec448f93a1fce688279e2",
+    "content-hash": "f4a926f54a4f8ec57825ba92c001029b",
     "packages": [
         {
             "name": "composer/semver",
@@ -7486,16 +7486,16 @@
         },
         {
             "name": "symfony/ux-autocomplete",
-            "version": "2.x-dev",
+            "version": "v2.25.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/ux-autocomplete.git",
-                "reference": "fa658ed05a0cd64151c201ba02e3f53e31ef10d1"
+                "reference": "e78d586a4e5100bfed49e05edc844f238928e06d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/ux-autocomplete/zipball/fa658ed05a0cd64151c201ba02e3f53e31ef10d1",
-                "reference": "fa658ed05a0cd64151c201ba02e3f53e31ef10d1",
+                "url": "https://api.github.com/repos/symfony/ux-autocomplete/zipball/e78d586a4e5100bfed49e05edc844f238928e06d",
+                "reference": "e78d586a4e5100bfed49e05edc844f238928e06d",
                 "shasum": ""
             },
             "require": {
@@ -7528,7 +7528,6 @@
                 "zenstruck/browser": "^1.1",
                 "zenstruck/foundry": "1.37.*"
             },
-            "default-branch": true,
             "type": "symfony-bundle",
             "extra": {
                 "thanks": {
@@ -7557,7 +7556,7 @@
                 "symfony-ux"
             ],
             "support": {
-                "source": "https://github.com/symfony/ux-autocomplete/tree/2.x"
+                "source": "https://github.com/symfony/ux-autocomplete/tree/v2.25.2"
             },
             "funding": [
                 {
@@ -7573,20 +7572,20 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2025-05-20T14:09:00+00:00"
+            "time": "2025-05-19T11:54:27+00:00"
         },
         {
             "name": "symfony/ux-chartjs",
-            "version": "2.x-dev",
+            "version": "v2.25.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/ux-chartjs.git",
-                "reference": "6123d6157cb0dbff9a7685842c657a6cc375b721"
+                "reference": "1cccd5f4cb7d0b1dcf88870138b77e6d832d464b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/ux-chartjs/zipball/6123d6157cb0dbff9a7685842c657a6cc375b721",
-                "reference": "6123d6157cb0dbff9a7685842c657a6cc375b721",
+                "url": "https://api.github.com/repos/symfony/ux-chartjs/zipball/1cccd5f4cb7d0b1dcf88870138b77e6d832d464b",
+                "reference": "1cccd5f4cb7d0b1dcf88870138b77e6d832d464b",
                 "shasum": ""
             },
             "require": {
@@ -7605,7 +7604,6 @@
                 "symfony/twig-bundle": "^5.4|^6.0|^7.0",
                 "symfony/var-dumper": "^5.4|^6.0|^7.0"
             },
-            "default-branch": true,
             "type": "symfony-bundle",
             "extra": {
                 "thanks": {
@@ -7638,7 +7636,7 @@
                 "symfony-ux"
             ],
             "support": {
-                "source": "https://github.com/symfony/ux-chartjs/tree/2.x"
+                "source": "https://github.com/symfony/ux-chartjs/tree/v2.25.2"
             },
             "funding": [
                 {
@@ -7654,20 +7652,20 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2025-05-20T14:09:00+00:00"
+            "time": "2025-05-19T11:54:27+00:00"
         },
         {
             "name": "symfony/ux-dropzone",
-            "version": "2.x-dev",
+            "version": "v2.25.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/ux-dropzone.git",
-                "reference": "023572504e2e009d1d1062abccff7c663b955556"
+                "reference": "f953bbc82be836ca2dec0b680bdbfdac221a06cb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/ux-dropzone/zipball/023572504e2e009d1d1062abccff7c663b955556",
-                "reference": "023572504e2e009d1d1062abccff7c663b955556",
+                "url": "https://api.github.com/repos/symfony/ux-dropzone/zipball/f953bbc82be836ca2dec0b680bdbfdac221a06cb",
+                "reference": "f953bbc82be836ca2dec0b680bdbfdac221a06cb",
                 "shasum": ""
             },
             "require": {
@@ -7685,7 +7683,6 @@
                 "symfony/var-dumper": "^5.4|^6.0|^7.0",
                 "twig/twig": "^2.14.7|^3.0.4"
             },
-            "default-branch": true,
             "type": "symfony-bundle",
             "extra": {
                 "thanks": {
@@ -7718,7 +7715,7 @@
                 "symfony-ux"
             ],
             "support": {
-                "source": "https://github.com/symfony/ux-dropzone/tree/2.x"
+                "source": "https://github.com/symfony/ux-dropzone/tree/v2.25.2"
             },
             "funding": [
                 {
@@ -7734,20 +7731,20 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2025-05-20T14:09:00+00:00"
+            "time": "2025-05-19T11:54:27+00:00"
         },
         {
             "name": "symfony/ux-live-component",
-            "version": "2.x-dev",
+            "version": "v2.25.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/ux-live-component.git",
-                "reference": "78f1dbc49acd41a2bdfc5989476f0a33b366a8e4"
+                "reference": "79e8cc179eb21119547c492ae21e4bf529ac1a15"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/ux-live-component/zipball/78f1dbc49acd41a2bdfc5989476f0a33b366a8e4",
-                "reference": "78f1dbc49acd41a2bdfc5989476f0a33b366a8e4",
+                "url": "https://api.github.com/repos/symfony/ux-live-component/zipball/79e8cc179eb21119547c492ae21e4bf529ac1a15",
+                "reference": "79e8cc179eb21119547c492ae21e4bf529ac1a15",
                 "shasum": ""
             },
             "require": {
@@ -7783,7 +7780,6 @@
                 "zenstruck/browser": "^1.2.0",
                 "zenstruck/foundry": "^2.0"
             },
-            "default-branch": true,
             "type": "symfony-bundle",
             "extra": {
                 "thanks": {
@@ -7814,7 +7810,7 @@
                 "twig"
             ],
             "support": {
-                "source": "https://github.com/symfony/ux-live-component/tree/2.x"
+                "source": "https://github.com/symfony/ux-live-component/tree/v2.25.2"
             },
             "funding": [
                 {
@@ -7830,20 +7826,20 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2025-05-21T12:55:12+00:00"
+            "time": "2025-05-19T11:54:27+00:00"
         },
         {
             "name": "symfony/ux-turbo",
-            "version": "2.x-dev",
+            "version": "v2.25.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/ux-turbo.git",
-                "reference": "9d2c7e85cf59f98462fe523303febb1fa1dc2065"
+                "reference": "11ebca138005c7e25678c3f98a07ddf718a0480c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/ux-turbo/zipball/9d2c7e85cf59f98462fe523303febb1fa1dc2065",
-                "reference": "9d2c7e85cf59f98462fe523303febb1fa1dc2065",
+                "url": "https://api.github.com/repos/symfony/ux-turbo/zipball/11ebca138005c7e25678c3f98a07ddf718a0480c",
+                "reference": "11ebca138005c7e25678c3f98a07ddf718a0480c",
                 "shasum": ""
             },
             "require": {
@@ -7875,7 +7871,6 @@
                 "symfony/ux-twig-component": "^2.21",
                 "symfony/web-profiler-bundle": "^5.4|^6.0|^7.0"
             },
-            "default-branch": true,
             "type": "symfony-bundle",
             "extra": {
                 "thanks": {
@@ -7913,7 +7908,7 @@
                 "turbo-stream"
             ],
             "support": {
-                "source": "https://github.com/symfony/ux-turbo/tree/2.x"
+                "source": "https://github.com/symfony/ux-turbo/tree/v2.25.2"
             },
             "funding": [
                 {
@@ -7929,11 +7924,11 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2025-05-20T14:09:00+00:00"
+            "time": "2025-05-19T11:54:27+00:00"
         },
         {
             "name": "symfony/ux-twig-component",
-            "version": "2.x-dev",
+            "version": "v2.25.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/ux-twig-component.git",
@@ -7966,7 +7961,6 @@
                 "symfony/twig-bundle": "^5.4|^6.0|^7.0",
                 "symfony/webpack-encore-bundle": "^1.15"
             },
-            "default-branch": true,
             "type": "symfony-bundle",
             "extra": {
                 "thanks": {
@@ -11321,14 +11315,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "symfony/ux-autocomplete": 20,
-        "symfony/ux-chartjs": 20,
-        "symfony/ux-dropzone": 20,
-        "symfony/ux-live-component": 20,
-        "symfony/ux-turbo": 20,
-        "symfony/ux-twig-component": 20
-    },
+    "stability-flags": {},
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {

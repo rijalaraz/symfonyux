@@ -62,7 +62,7 @@ final class PostFormComponent extends AbstractController
             foreach ($files['photos'] as $sary) {
 
                 /** @var UploadedFile $uploadedFile */
-                $uploadedFile = $sary['imageFile']['file'];
+                $uploadedFile = $sary;
 
                 $photo = new Photo();
 
