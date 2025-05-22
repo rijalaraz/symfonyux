@@ -52,11 +52,13 @@ class PostType extends AbstractType
             ->addDependent('foods', 'meal', function (DependentField $field, ?Meal $meal) {
                 $field->add(FoodAutocompleteField::class,  [
                     'label' => 'Aliments',
-                    'placeholder' => null === $meal ? 'Select a meal first' : \sprintf('What\'s for %s?', $meal->getReadable()),
+                    'attr' => [
+                        'placeholder' => null === $meal ? 'Select a meal first' : \sprintf('What\'s for %s?', $meal->getReadable()),
+                    ],
                     'extra_options' => [
                         'included_meals' => $meal ? [$meal->getId()] : [],
                     ],
-                    // 'disabled' => null === $meal,
+                    'disabled' => null === $meal,
                 ]);
             })
         ;
