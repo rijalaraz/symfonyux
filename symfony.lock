@@ -302,7 +302,7 @@
         "version": "v2.23.0"
     },
     "symfony/ux-dropzone": {
-        "version": "v2.24.0"
+        "version": "2.x-dev"
     },
     "symfony/ux-live-component": {
         "version": "2.23",

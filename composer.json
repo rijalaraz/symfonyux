@@ -43,7 +43,7 @@
         "symfony/twig-bundle": "7.2.*",
         "symfony/ux-autocomplete": "^2.24",
         "symfony/ux-chartjs": "^2.23",
-        "symfony/ux-dropzone": "^2.24",
+        "symfony/ux-dropzone": "2.x-dev",
         "symfony/ux-live-component": "^2.23",
         "symfony/ux-turbo": "^2.23",
         "symfony/ux-twig-component": "^2.23",

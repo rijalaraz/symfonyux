@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "645e6c10dea176d2408fa4e3b336a3aa",
+    "content-hash": "2165dc24fb3d83f4c79b21a1eac40972",
     "packages": [
         {
             "name": "composer/semver",
@@ -7656,16 +7656,16 @@
         },
         {
             "name": "symfony/ux-dropzone",
-            "version": "v2.24.0",
+            "version": "2.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/ux-dropzone.git",
-                "reference": "a0cbf415da3c555acd05839835500cc6e50f974c"
+                "reference": "023572504e2e009d1d1062abccff7c663b955556"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/ux-dropzone/zipball/a0cbf415da3c555acd05839835500cc6e50f974c",
-                "reference": "a0cbf415da3c555acd05839835500cc6e50f974c",
+                "url": "https://api.github.com/repos/symfony/ux-dropzone/zipball/023572504e2e009d1d1062abccff7c663b955556",
+                "reference": "023572504e2e009d1d1062abccff7c663b955556",
                 "shasum": ""
             },
             "require": {
@@ -7683,6 +7683,7 @@
                 "symfony/var-dumper": "^5.4|^6.0|^7.0",
                 "twig/twig": "^2.14.7|^3.0.4"
             },
+            "default-branch": true,
             "type": "symfony-bundle",
             "extra": {
                 "thanks": {
@@ -7715,7 +7716,7 @@
                 "symfony-ux"
             ],
             "support": {
-                "source": "https://github.com/symfony/ux-dropzone/tree/v2.24.0"
+                "source": "https://github.com/symfony/ux-dropzone/tree/2.x"
             },
             "funding": [
                 {
@@ -7731,7 +7732,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2025-03-09T21:10:04+00:00"
+            "time": "2025-05-20T14:09:00+00:00"
         },
         {
             "name": "symfony/ux-live-component",
@@ -11314,7 +11315,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "symfony/ux-dropzone": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
@@ -11322,6 +11325,6 @@
         "ext-ctype": "*",
         "ext-iconv": "*"
     },
-    "platform-dev": [],
-    "plugin-api-version": "2.3.0"
+    "platform-dev": {},
+    "plugin-api-version": "2.6.0"
 }
