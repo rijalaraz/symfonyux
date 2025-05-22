@@ -9,6 +9,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\UX\Dropzone\Form\DropzoneType;
 use Symfony\UX\LiveComponent\Form\Type\LiveCollectionType;
 use Symfonycasts\DynamicForms\DependentField;
 use Symfonycasts\DynamicForms\DynamicFormBuilder;
@@ -64,8 +65,7 @@ class PostType extends AbstractType
         ;
  
         $builder
-            ->add('photos', LiveCollectionType::class, [
-                'entry_type' => PhotoType::class,
+            ->add('photos', DropzoneType::class, [
                 'label' => 'Photos',
                 'mapped' => false,
             ])
