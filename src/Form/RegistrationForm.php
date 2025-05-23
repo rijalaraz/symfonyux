@@ -24,6 +24,7 @@ class RegistrationForm extends AbstractType
             ->add('civilite', EnumType::class, [
                 'class' => Civilite::class,
                 'choice_label' => 'label',
+                'expanded' => true,
             ])
             ->add('email')
             ->add('agreeTerms', CheckboxType::class, [
