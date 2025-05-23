@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+<div class="m-4">
+    {{ form_start(form, {attr: {class: 'needs-validation', novalidate: ''}}) }}
+        {{ form_errors(form) }}
+
+        {{ form_rest(form) }}
+        <div class="mt-5">
+            {% include '@AsmittaFormFlow/FormFlow/buttons.html.twig' with {
+                asmitta_formflow_button_class_last: 'btn btn-primary',
+                asmitta_formflow_button_class_back: 'btn',
+                asmitta_formflow_button_class_reset: 'btn btn-warning',
+            } %}
+        </div>
+    {{ form_end(form) }}
+</div>
+{% endblock %}
