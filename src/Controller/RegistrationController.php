@@ -89,8 +89,9 @@ class RegistrationController extends AbstractController
     {
         $user = new User();
 
-        // Get existing flow data from session if it exists
+        // Get existing flow data from session if it exists        
         $this->flow->bind($user);
+
         $form = $this->flow->createForm();
 
         if ($this->flow->isValid($form)) {
@@ -114,5 +115,4 @@ class RegistrationController extends AbstractController
             'flow' => $this->flow,
         ]);
     }
-
 }

@@ -2,8 +2,8 @@
 
 namespace App\Form;
 
-use Asmitta\FormFlowBundle\Form\FormFlow;
-use Asmitta\FormFlowBundle\Form\FormFlowInterface;
+use Craue\FormFlowBundle\Form\FormFlow;
+
 
 class UserFlowForm extends FormFlow
 {
@@ -12,18 +12,15 @@ class UserFlowForm extends FormFlow
         return [
             [
                 'label' => 'Information',
-                'form_type' => RegistrationForm1::class,
+                'form_type' => RegistrationForm::class,
             ],
             [
                 'label' => 'Contact',
-                'form_type' => RegistrationForm2::class,
-                'skip' => function($estimatedCurrentStepNumber, FormFlowInterface $flow) {
-					return $estimatedCurrentStepNumber > 1;
-				},
+                'form_type' => RegistrationForm::class,
             ],
             [
                 'label' => 'Etablissement',
-                'form_type' => RegistrationForm3::class,
+                'form_type' => RegistrationForm::class,
             ],
         ];
     }

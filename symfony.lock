@@ -1,7 +1,4 @@
 {
-    "asmitta-01/formflow-bundle": {
-        "version": "v2.0.1"
-    },
     "craue/formflow-bundle": {
         "version": "3.7.0"
     },
