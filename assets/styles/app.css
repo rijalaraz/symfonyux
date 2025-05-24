@@ -2,7 +2,7 @@ body {
     background-color: skyblue;
 }
 
-#registration_form_civilite .form-check {
+#registration_form_civilite .form-check, #user_civilite .form-check {
     display: inline-flex;
     gap: 5px;
     margin-right: 25px; /* Adjust spacing between radio buttons */

@@ -46,6 +46,7 @@ final class RegistrationFormComponent extends AbstractController
     #[LiveAction]
     public function nextStep()
     {
+        $this->submitForm();
         $this->setUserValues();
         ++$this->flow_step;
     }

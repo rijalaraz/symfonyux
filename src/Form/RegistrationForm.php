@@ -25,9 +25,15 @@ class RegistrationForm extends AbstractType
         switch ($options['flow_step']) {
             case 1:
                 $builder
-                    ->add('prenom', TextType::class)
+                    ->add('prenom', TextType::class, [
+                        'label' => 'Prénom',
+                        // 'constraints' => [
+                        //     new NotBlank(message: 'Le Prénom est obligatoire')
+                        // ]
+                    ])
                     ->add('civilite', EnumType::class, [
                         'class' => Civilite::class,
+                        'label' => 'Civilité',
                         'choice_label' => 'label',
                         'expanded' => true,
                     ])
@@ -36,8 +42,11 @@ class RegistrationForm extends AbstractType
 
             case 2:
                 $builder
-                    ->add('email', EmailType::class)
+                    ->add('email', EmailType::class, [
+                        'label' => 'Email',
+                    ])
                     ->add('plainPassword', PasswordType::class, [
+                        'label' => 'Mot de passe',
                         // instead of being set onto the object directly, this is read and encoded in the controller
                         'mapped' => false,
                         'attr' => ['autocomplete' => 'new-password'],
@@ -59,6 +68,7 @@ class RegistrationForm extends AbstractType
             case 3:
                 $builder
                     ->add('etablissement', EntityType::class, [
+                        'label' => 'Etablissement',
                         'class' => Etablissement::class,
                         'choice_label' => 'nom_etablissement',
                     ])

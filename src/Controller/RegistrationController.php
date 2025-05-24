@@ -3,8 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\User;
-use App\Form\RegistrationForm;
 use App\Form\UserFlowForm;
+use App\Form\UserType;
 use App\Security\EmailVerifier;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
@@ -30,7 +30,7 @@ class RegistrationController extends AbstractController
     public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager): Response
     {
         $user = new User();
-        $form = $this->createForm(RegistrationForm::class, $user);
+        $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -46,7 +46,7 @@ class RegistrationController extends AbstractController
             // generate a signed url and email it to the user
             $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user,
                 (new TemplatedEmail())
-                    ->from(new Address('rijalaraz@gmail.com', 'Rija Lalaina'))
+                    ->from(new Address('sender@domaine.com', 'Sender Name'))
                     ->to((string) $user->getEmail())
                     ->subject('Please Confirm your Email')
                     ->htmlTemplate('registration/confirmation_email.html.twig')
