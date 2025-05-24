@@ -1,0 +1,41 @@
+<div{{ attributes }}>
+    {{ form_start(form, {
+        attr: {
+            'data-model': 'norender|*'
+        }
+    }) }}
+        {{ form_errors(form) }}
+
+        {{ form_rest(form) }}
+
+        <div class="mt-5">
+            <button
+                type="button"
+                class="btn btn-secondary"
+                data-action="live#action"
+                data-live-action-param="previousStep"
+                data-loading="addAttribute(disabled)"
+            >
+                Précédent
+            </button>
+            <button
+                type="button"
+                class="btn btn-primary"
+                data-action="live#action"
+                data-live-action-param="nextStep"
+                data-loading="addAttribute(disabled)"
+            >
+                Suivant
+            </button>
+            <button
+                type="button"
+                class="btn btn-success"
+                data-action="live#action"
+                data-live-action-param="saveForm"
+                data-loading="addAttribute(disabled)"
+            >
+                Créer
+            </button>
+        </div>
+    {{ form_end(form) }}
+</div>

@@ -87,32 +87,6 @@ class RegistrationController extends AbstractController
     #[Route('/inscription', 'app_inscription')]
     public function inscription()
     {
-        $user = new User();
-
-        // Get existing flow data from session if it exists        
-        $this->flow->bind($user);
-
-        $form = $this->flow->createForm();
-
-        if ($this->flow->isValid($form)) {
-            $this->flow->saveCurrentStepData($form); // Save data in session
-            $user = $form->getData();
-
-            if ($this->flow->nextStep()) {
-                $form = $this->flow->createForm(); // Go to the next step
-            } else {
-                // Persist data here
-                $this->entityManager->persist($user);
-                $this->entityManager->flush();
-
-                $this->flow->reset(); // remove all data from the session
-                return $this->redirectToRoute('app_post_index'); // redirect when done
-            }
-        }
-
-        return $this->render('registration/inscription.html.twig', [
-            'form' => $form->createView(),
-            'flow' => $this->flow,
-        ]);
+        return $this->render('inscription/index.html.twig');
     }
 }
