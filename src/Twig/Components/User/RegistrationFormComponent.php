@@ -27,7 +27,7 @@ final class RegistrationFormComponent extends AbstractController
     public int $flow_step = 1;
 
     #[LiveProp]
-    public $userValues = [];
+    public array $userValues = [];
 
     public function __construct(
        private EntityManagerInterface $entityManager,
@@ -39,7 +39,7 @@ final class RegistrationFormComponent extends AbstractController
         // we can extend AbstractController to get the normal shortcuts
         return $this->createForm(RegistrationForm::class, $this->initialFormData, [
             'flow_step' => $this->flow_step,
-            'csrf_protection' => false,
+            // 'csrf_protection' => false,
         ]);
     }
 
@@ -69,7 +69,7 @@ final class RegistrationFormComponent extends AbstractController
     {
         // Submit the form! If validation fails, an exception is thrown
         // and the component is automatically re-rendered with the errors
-        // $this->submitForm();
+        $this->submitForm();
 
         $this->setUserValues();
 

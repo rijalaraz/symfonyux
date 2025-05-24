@@ -27,15 +27,18 @@ class RegistrationForm extends AbstractType
                 $builder
                     ->add('prenom', TextType::class, [
                         'label' => 'Prénom',
-                        // 'constraints' => [
-                        //     new NotBlank(message: 'Le Prénom est obligatoire')
-                        // ]
+                        'constraints' => [
+                            new NotBlank(message: 'Le Prénom est obligatoire')
+                        ]
                     ])
                     ->add('civilite', EnumType::class, [
                         'class' => Civilite::class,
                         'label' => 'Civilité',
                         'choice_label' => 'label',
                         'expanded' => true,
+                        'constraints' => [
+                            new NotBlank(message: 'La Civilité est obligatoire')
+                        ]
                     ])
                 ;
                 break;
@@ -68,9 +71,10 @@ class RegistrationForm extends AbstractType
             case 3:
                 $builder
                     ->add('etablissement', EntityType::class, [
-                        'label' => 'Etablissement',
                         'class' => Etablissement::class,
                         'choice_label' => 'nom_etablissement',
+                        'placeholder' => 'Which Etablissement is it?',
+                        'autocomplete' => true,
                     ])
                     ->add('agreeTerms', CheckboxType::class, [
                         'mapped' => false,
