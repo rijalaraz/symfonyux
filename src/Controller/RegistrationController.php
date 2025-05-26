@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Entity\User;
-use App\Form\UserFlowForm;
 use App\Form\UserType;
 use App\Security\EmailVerifier;
 use Doctrine\ORM\EntityManagerInterface;
@@ -21,7 +20,6 @@ class RegistrationController extends AbstractController
 {
     public function __construct(
         private EmailVerifier $emailVerifier,
-        private UserFlowForm $flow,
         private EntityManagerInterface $entityManager,
     ) {
     }

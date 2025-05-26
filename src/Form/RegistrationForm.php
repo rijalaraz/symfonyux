@@ -47,6 +47,9 @@ class RegistrationForm extends AbstractType
                 $builder
                     ->add('email', EmailType::class, [
                         'label' => 'Email',
+                        'constraints' => [
+                            new NotBlank(message: "L'Email est obligatoire")
+                        ]
                     ])
                     ->add('plainPassword', PasswordType::class, [
                         'label' => 'Mot de passe',
@@ -75,6 +78,9 @@ class RegistrationForm extends AbstractType
                         'choice_label' => 'nom_etablissement',
                         'placeholder' => 'Which Etablissement is it?',
                         'autocomplete' => true,
+                        'constraints' => [
+                            new NotBlank(message: "L'Etablissement est obligatoire")
+                        ]
                     ])
                     ->add('agreeTerms', CheckboxType::class, [
                         'mapped' => false,
