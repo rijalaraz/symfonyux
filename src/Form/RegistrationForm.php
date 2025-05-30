@@ -14,6 +14,7 @@ use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
@@ -48,7 +49,8 @@ class RegistrationForm extends AbstractType
                     ->add('email', EmailType::class, [
                         'label' => 'Email',
                         'constraints' => [
-                            new NotBlank(message: "L'Email est obligatoire")
+                            new NotBlank(message: "L'Email est obligatoire"),
+                            new Email(message: "The email '{{ value }}' is not valid.", mode:"strict")
                         ]
                     ])
                     ->add('plainPassword', PasswordType::class, [
@@ -99,6 +101,7 @@ class RegistrationForm extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => User::class,
+            'flow_step' => 1,
         ]);
     }
 }
