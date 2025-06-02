@@ -39,8 +39,6 @@ final class RegistrationFormComponent extends AbstractController
         // we can extend AbstractController to get the normal shortcuts
         return $this->createForm(RegistrationForm::class, $this->initialFormData, [
             'flow_step' => $this->flow_step,
-            'allow_extra_fields' => true
-            // 'csrf_protection' => false,
         ]);
     }
 
@@ -50,12 +48,14 @@ final class RegistrationFormComponent extends AbstractController
         $this->submitForm();
         $this->setUserValues();
         ++$this->flow_step;
+        $this->submitForm(false);
     }
 
     #[LiveAction]
     public function previousStep()
     {
         --$this->flow_step;
+        $this->submitForm(false);
     }
 
     private function setUserValues()

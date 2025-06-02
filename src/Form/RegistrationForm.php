@@ -57,6 +57,7 @@ class RegistrationForm extends AbstractType
                         'label' => 'Mot de passe',
                         // instead of being set onto the object directly, this is read and encoded in the controller
                         'mapped' => false,
+                        'always_empty' => false,
                         'attr' => ['autocomplete' => 'new-password'],
                         'constraints' => [
                             new NotBlank(
