@@ -40,15 +40,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255)]
     private ?string $prenom = null;
 
-    #[ORM\Column(enumType: Civilite::class)]
-    private ?Civilite $civilite = null;
-
     #[ORM\Column]
     private bool $isVerified = false;
 
     #[ORM\ManyToOne(inversedBy: 'users')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Etablissement $etablissement = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $civilite = null;
 
     public function getId(): ?int
     {
@@ -135,18 +135,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getCivilite(): ?Civilite
-    {
-        return $this->civilite;
-    }
-
-    public function setCivilite(Civilite $civilite): static
-    {
-        $this->civilite = $civilite;
-
-        return $this;
-    }
-
     public function isVerified(): bool
     {
         return $this->isVerified;
@@ -167,6 +155,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setEtablissement(?Etablissement $etablissement): static
     {
         $this->etablissement = $etablissement;
+
+        return $this;
+    }
+
+    public function getCivilite(): ?string
+    {
+        return $this->civilite;
+    }
+
+    public function setCivilite(string $civilite): static
+    {
+        $this->civilite = $civilite;
 
         return $this;
     }

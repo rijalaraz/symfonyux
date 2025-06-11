@@ -8,8 +8,8 @@ use App\Enum\Civilite;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
-use Symfony\Component\Form\Extension\Core\Type\EnumType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -32,10 +32,13 @@ class RegistrationForm extends AbstractType
                             new NotBlank(message: 'Le Prénom est obligatoire')
                         ]
                     ])
-                    ->add('civilite', EnumType::class, [
-                        'class' => Civilite::class,
+                    ->add('civilite', ChoiceType::class, [
                         'label' => 'Civilité',
-                        'choice_label' => 'label',
+                        'choices' => [
+                            'M.' => 'monsieur',
+                            'Mme.' => 'madame',
+                            'Mlle.' => 'mademoiselle'
+                        ],
                         'expanded' => true,
                         'constraints' => [
                             new NotBlank(message: 'La Civilité est obligatoire')
