@@ -3,7 +3,6 @@
 namespace App\Twig\Components\User;
 
 use App\Entity\User;
-use App\Enum\Civilite;
 use App\Form\RegistrationForm;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -15,6 +14,7 @@ use Symfony\UX\LiveComponent\Attribute\LiveAction;
 use Symfony\UX\LiveComponent\Attribute\LiveProp;
 use Symfony\UX\LiveComponent\ComponentWithFormTrait;
 use Symfony\UX\LiveComponent\DefaultActionTrait;
+use Symfony\UX\TwigComponent\Attribute\PreMount;
 
 #[AsLiveComponent]
 final class RegistrationFormComponent extends AbstractController
@@ -34,11 +34,21 @@ final class RegistrationFormComponent extends AbstractController
        private Session $session,
     ) {}
 
+    #[PreMount()]
+    public function setFlowStepSession()
+    {
+        if (!empty($this->session->get('flow_step'))) {
+            $this->flow_step = $this->session->get('flow_step');
+        } else {
+            $this->session->set('flow_step', $this->flow_step);
+        }
+    }
+
     protected function instantiateForm(): FormInterface
     {
         // we can extend AbstractController to get the normal shortcuts
         return $this->createForm(RegistrationForm::class, $this->initialFormData, [
-            'flow_step' => $this->flow_step,
+            'flow_step' => $this->session->get('flow_step'),
         ]);
     }
 
@@ -60,6 +70,8 @@ final class RegistrationFormComponent extends AbstractController
     public function previousStep()
     {
         --$this->flow_step;
+
+        $this->session->set('flow_step', $this->flow_step);
 
         $formValues = $this->session->get('formValues');
 

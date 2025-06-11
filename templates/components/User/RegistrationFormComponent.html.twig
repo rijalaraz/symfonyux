@@ -7,26 +7,25 @@
         {{ form_errors(form) }}
 
 
-        {% if flow_step == 1 %}
+        {% if app.session.get('flow_step') == 1 %}
 
             {{ form_row(form.prenom) }}
 
             {{ form_row(form.civilite) }}
 
-        {% elseif flow_step == 2  %}
+        {% elseif app.session.get('flow_step') == 2  %}
 
             {{ form_row(form.email) }}
 
             {{ form_row(form.plainPassword) }}
 
-        {% elseif flow_step == 3 %}
+        {% elseif app.session.get('flow_step') == 3 %}
 
             {{ form_row(form.etablissement) }}
 
             {{ form_row(form.agreeTerms) }}
 
         {% endif %}
-
 
         <div class="mt-5">
             <button
@@ -57,5 +56,7 @@
                 Créer
             </button>
         </div>
+
+        {{ form_rest(form) }}
     {{ form_end(form) }}
 </div>
