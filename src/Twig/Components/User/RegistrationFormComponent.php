@@ -3,11 +3,13 @@
 namespace App\Twig\Components\User;
 
 use App\Entity\User;
+use App\Enum\Civilite;
 use App\Form\RegistrationForm;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormInterface;
+use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\UX\LiveComponent\Attribute\AsLiveComponent;
 use Symfony\UX\LiveComponent\Attribute\LiveAction;
 use Symfony\UX\LiveComponent\Attribute\LiveProp;
@@ -26,12 +28,10 @@ final class RegistrationFormComponent extends AbstractController
     #[LiveProp]
     public int $flow_step = 1;
 
-    #[LiveProp]
-    public array $userValues = [];
-
     public function __construct(
        private EntityManagerInterface $entityManager,
        private UserRepository $userRepository,
+       private Session $session,
     ) {}
 
     protected function instantiateForm(): FormInterface
@@ -46,8 +46,13 @@ final class RegistrationFormComponent extends AbstractController
     public function nextStep()
     {
         $this->submitForm();
-        $this->setUserValues();
+
+        $this->setFormValues();
+
         ++$this->flow_step;
+
+        $this->session->set('flow_step', $this->flow_step);
+
         $this->submitForm(false);
     }
 
@@ -55,13 +60,22 @@ final class RegistrationFormComponent extends AbstractController
     public function previousStep()
     {
         --$this->flow_step;
+
+        $formValues = $this->session->get('formValues');
+
+        $this->formValues = $formValues[$this->flow_step];
+
         $this->submitForm(false);
     }
 
-    private function setUserValues()
+    private function setFormValues()
     {
-        foreach ($this->formValues as $key => $value) {
-            $this->userValues[$key] = $value;
+        $formValues[$this->flow_step] = $this->formValues;
+
+        if (!empty($this->session->get('formValues'))) {
+            $this->session->set('formValues', array_replace($this->session->get('formValues'), $formValues));    
+        } else {
+            $this->session->set('formValues', $formValues);
         }
     }
 
@@ -72,10 +86,8 @@ final class RegistrationFormComponent extends AbstractController
         // and the component is automatically re-rendered with the errors
         $this->submitForm();
 
-        $this->setUserValues();
+        $this->setFormValues();
 
-        // $user = $this->getForm()->getData();
-
-        dd($this->userValues);
+        dd($this->session->get('formValues'));
     }
 }

@@ -6,7 +6,27 @@
     }) }}
         {{ form_errors(form) }}
 
-        {{ form_rest(form) }}
+
+        {% if flow_step == 1 %}
+
+            {{ form_row(form.prenom) }}
+
+            {{ form_row(form.civilite) }}
+
+        {% elseif flow_step == 2  %}
+
+            {{ form_row(form.email) }}
+
+            {{ form_row(form.plainPassword) }}
+
+        {% elseif flow_step == 3 %}
+
+            {{ form_row(form.etablissement) }}
+
+            {{ form_row(form.agreeTerms) }}
+
+        {% endif %}
+
 
         <div class="mt-5">
             <button
