@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "219265e19304f2c83718cae6035bc0f7",
+    "content-hash": "b8311793dfadbce7f6482b982589828c",
     "packages": [
         {
             "name": "composer/semver",
@@ -8910,6 +8910,51 @@
                 "source": "https://github.com/webmozarts/assert/tree/1.11.0"
             },
             "time": "2022-06-03T18:03:27+00:00"
+        },
+        {
+            "name": "yceruto/formflow-bundle",
+            "version": "v0.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/yceruto/formflow-bundle.git",
+                "reference": "39e3c22df1f8d2f46f9b942341d948fd2b325de5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/yceruto/formflow-bundle/zipball/39e3c22df1f8d2f46f9b942341d948fd2b325de5",
+                "reference": "39e3c22df1f8d2f46f9b942341d948fd2b325de5",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.3",
+                "symfony/form": "^6.4|^7.0",
+                "symfony/framework-bundle": "^6.4|^7.0",
+                "symfony/validator": "^6.4|^7.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^11",
+                "symfony/browser-kit": "^7.3",
+                "symfony/css-selector": "^7.3",
+                "symfony/translation": "^7.3",
+                "symfony/twig-bundle": "^7.3",
+                "symfony/yaml": "^7.3"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-4": {
+                    "Yceruto\\FormFlowBundle\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Create and manage multistep forms",
+            "support": {
+                "issues": "https://github.com/yceruto/formflow-bundle/issues",
+                "source": "https://github.com/yceruto/formflow-bundle/tree/v0.1.1"
+            },
+            "time": "2025-06-09T19:07:24+00:00"
         }
     ],
     "packages-dev": [
