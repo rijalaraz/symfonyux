@@ -28,6 +28,7 @@ class RegistrationForm extends AbstractType
                 $builder
                     ->add('prenom', TextType::class, [
                         'label' => 'Prénom',
+                        'empty_data' => '',
                         'constraints' => [
                             new NotBlank(message: 'Le Prénom est obligatoire')
                         ]
@@ -51,6 +52,7 @@ class RegistrationForm extends AbstractType
                 $builder
                     ->add('email', EmailType::class, [
                         'label' => 'Email',
+                        'empty_data' => '',
                         'constraints' => [
                             new NotBlank(message: "L'Email est obligatoire"),
                             new Email(message: "The email '{{ value }}' is not valid.", mode:"strict")

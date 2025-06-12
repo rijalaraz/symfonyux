@@ -4,6 +4,7 @@ namespace App\Twig\Components\User;
 
 use App\Entity\User;
 use App\Form\RegistrationForm;
+use App\Repository\EtablissementRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -31,6 +32,7 @@ final class RegistrationFormComponent extends AbstractController
     public function __construct(
        private EntityManagerInterface $entityManager,
        private UserRepository $userRepository,
+       private EtablissementRepository $etablissementRepository,
        private Session $session,
     ) {}
 
@@ -44,8 +46,43 @@ final class RegistrationFormComponent extends AbstractController
         }
     }
 
+    public function getFormValuesSession()
+    {
+        if (!empty($this->session->get('flow_step')) && !empty($this->session->get('formValues'))) {
+
+            $formValues = $this->session->get('formValues');
+
+            if (isset($formValues[$this->session->get('flow_step')])) {
+                return $formValues[$this->session->get('flow_step')];
+            }
+
+        }
+        return [];
+    }
+
     protected function instantiateForm(): FormInterface
     {
+        $formValues = $this->getFormValuesSession();
+
+        if (!empty($formValues)) {
+            $this->initialFormData = new User();
+            switch ($this->session->get('flow_step')) {
+                case 1:
+                    $this->initialFormData->setPrenom($formValues['prenom']);
+                    $this->initialFormData->setCivilite($formValues['civilite']);
+                    break;
+
+                case 2:
+                    $this->initialFormData->setEmail($formValues['email']);
+                    break;
+
+                case 3:
+                    $etablissement = $this->etablissementRepository->find($formValues['etablissement']);
+                    $this->initialFormData->setEtablissement($etablissement);
+                    break;
+            }
+        }
+
         // we can extend AbstractController to get the normal shortcuts
         return $this->createForm(RegistrationForm::class, $this->initialFormData, [
             'flow_step' => $this->session->get('flow_step'),
@@ -57,7 +94,7 @@ final class RegistrationFormComponent extends AbstractController
     {
         $this->submitForm();
 
-        $this->setFormValues();
+        $this->setFormValuesSession();
 
         ++$this->flow_step;
 
@@ -80,7 +117,7 @@ final class RegistrationFormComponent extends AbstractController
         $this->submitForm(false);
     }
 
-    private function setFormValues()
+    private function setFormValuesSession()
     {
         $formValues[$this->flow_step] = $this->formValues;
 
@@ -98,7 +135,7 @@ final class RegistrationFormComponent extends AbstractController
         // and the component is automatically re-rendered with the errors
         $this->submitForm();
 
-        $this->setFormValues();
+        $this->setFormValuesSession();
 
         dd($this->session->get('formValues'));
     }
