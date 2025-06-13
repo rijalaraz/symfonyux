@@ -25,3 +25,6 @@ services:
 
     Symfony\Component\HttpFoundation\Session\Session:
         autowire: true
+
+    App\Form\UserFlow:
+        parent: asmitta.form.flow

@@ -21,5 +21,5 @@ return [
     Vich\UploaderBundle\VichUploaderBundle::class => ['all' => true],
     Symfony\UX\Dropzone\DropzoneBundle::class => ['all' => true],
     SymfonyCasts\Bundle\VerifyEmail\SymfonyCastsVerifyEmailBundle::class => ['all' => true],
-    Yceruto\FormFlowBundle\FormFlowBundle::class => ['all' => true],
+    Asmitta\FormFlowBundle\AsmittaFormFlowBundle::class => ['all' => true],
 ];

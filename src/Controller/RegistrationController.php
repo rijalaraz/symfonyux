@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Form\UserFlow;
 use App\Form\UserType;
 use App\Security\EmailVerifier;
 use Doctrine\ORM\EntityManagerInterface;
@@ -21,6 +22,7 @@ class RegistrationController extends AbstractController
     public function __construct(
         private EmailVerifier $emailVerifier,
         private EntityManagerInterface $entityManager,
+        private UserFlow $flow,
     ) {
     }
 
@@ -86,5 +88,35 @@ class RegistrationController extends AbstractController
     public function inscription()
     {
         return $this->render('inscription/index.html.twig');
+    }
+
+    #[Route('/signup', 'app_signup')]
+    public function signup()
+    {
+        $user = new User();
+
+        // Get existing flow data from session if it exists
+        $this->flow->bind($user);
+
+        $form = $this->flow->createForm();
+
+        if ($this->flow->isValid($form)) {
+
+            $this->flow->saveCurrentStepData($form); // Save data in session
+            $user = $form->getData();
+
+            if ($this->flow->nextStep()) {
+                $form = $this->flow->createForm(); // Go to the next step
+            } else {
+                // Persist data here
+                $this->flow->reset(); // remove all data from the session
+                return $this->redirectToRoute('app_signup_success'); // redirect when done
+            }
+        }
+
+        return $this->render('signup/flow.html.twig', [
+            'form' => $form->createView(),
+            'flow' => $this->flow,
+        ], new Response(status: Response::HTTP_SEE_OTHER));
     }
 }
