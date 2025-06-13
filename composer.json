@@ -8,6 +8,7 @@
         "ext-ctype": "*",
         "ext-iconv": "*",
         "asmitta-01/formflow-bundle": "^2.0",
+        "craue/formflow-bundle": "^3.7",
         "doctrine/dbal": "^3.9.4",
         "doctrine/doctrine-bundle": "^2.14",
         "doctrine/doctrine-migrations-bundle": "^3.4.2",
