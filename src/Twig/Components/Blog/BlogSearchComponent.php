@@ -12,7 +12,7 @@ final class BlogSearchComponent
 {
     use DefaultActionTrait;
 
-    #[LiveProp(writable: true)] 
+    #[LiveProp(writable: true)]
     public string $query = "";
 
     public function __construct(
