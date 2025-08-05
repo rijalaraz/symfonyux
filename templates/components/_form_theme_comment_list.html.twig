@@ -10,9 +10,13 @@
 {%- endblock -%}
 
 {%- block live_collection_entry_row -%}
+    <style>
+        .komantera .col-sm-2 { width: 0px }
+        .komantera .col-sm-10 { width: 100%; padding-left: 4px }
+    </style>
     <tr>
         {% for child in form %}
-            <td>{{- form_row(child) -}}</td>
+            <td class="komantera">{{- form_row(child) -}}</td>
         {% endfor %}
         <td>
             {{- form_row(button_delete, { label: 'X', attr: { class: 'btn btn-outline-danger' } }) -}}

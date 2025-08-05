@@ -19,7 +19,7 @@ class CommentType extends AbstractType
                 // any trailing spaces as the user types... which
                 // is no bueno
                 'trim' => false,
-                'label' => 'Commentaire',
+                'label' => false,
                 'attr' => [
                     'class' => 'form-control'
                 ],
