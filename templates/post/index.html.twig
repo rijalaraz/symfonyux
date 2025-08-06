@@ -3,11 +3,18 @@
 {% block title %}Post index{% endblock %}
 
 {% block body %}
-    <h1>Post index</h1>
+    <style>
+        .example-wrapper { margin: 1em auto; max-width: 1000px; width: 95%; font: 18px/1.5 sans-serif; }
+        .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    </style>
 
-    <div class="m-4">
-        <twig:Post:PostListComponent />
+    <div class="example-wrapper">
+        <h1>Post index</h1>
+
+        <div class="m-4">
+            <twig:Post:PostListComponent />
+        </div>
+
+        <a href="{{ path('app_post_new') }}">Create new</a>
     </div>
-
-    <a href="{{ path('app_post_new') }}">Create new</a>
 {% endblock %}
